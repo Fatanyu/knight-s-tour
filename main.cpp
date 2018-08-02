@@ -15,6 +15,8 @@ int main(void)
 	
 	std::unique_ptr<Board> board(new Board(boardSizeWidth,boardSizeHeight));
 
+	// In case of fail, just reset and do it again
+	// TODO random next step in case of multiple choices
 	while(!board->warnsdorff()) board->reset();
 	
 	//board->printBoard();

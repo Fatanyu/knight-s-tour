@@ -191,7 +191,7 @@ bool Board::move()
 
 	}
 	this->setPosition(newPosition);
-//printBoard();
+	//printBoard();
 	return true;
 }
 
@@ -218,27 +218,45 @@ bool Board::isEmpty(int newWidth, int newHeight)
 	else return true;
 }
 
+bool Board::isPotencialPositionNegative(int moveWithWidth, int moveWithHeight)
+{
+	return (this->m_actualPosition.width + moveWithWidth) < 0 || (this->m_actualPosition.height + moveWithHeight) < 0;
+}
+
+bool Board::isPotencialPositionGreaterThanSize(int moveWithWidth, int moveWithHeight)
+{
+	return (this->m_actualPosition.width + moveWithWidth) >= this->getWidth() || (this->m_actualPosition.height + moveWithHeight) >= this->getHeight();
+}
+
 bool Board::positionExists(int moveWithWidth, int moveWithHeight)
 {
-	if(this->m_actualPosition.width + moveWithWidth < 0 ||
-			this->m_actualPosition.height + moveWithHeight < 0)
+	if(this->isPotencialPositionNegative(moveWithWidth, moveWithHeight))
 		return false;
-	if(this->m_actualPosition.width + moveWithWidth >= this->getWidth() ||
-			this->m_actualPosition.height + moveWithHeight >= this->getHeight())
+	if(this->isPotencialPositionGreaterThanSize(moveWithWidth, moveWithHeight))
 		return false;
+	
 	if(this->isEmpty(this->m_actualPosition.width + moveWithWidth,this->m_actualPosition.height + moveWithHeight)) 
 		return true;
 	else return false;
 }
 
+bool Board::isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition)
+{
+	return (potencialPosition.width + moveWithWidth) < 0 || (potencialPosition.height + moveWithHeight) < 0;
+}
+
+bool Board::isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition)
+{
+	return potencialPosition.width + moveWithWidth >= this->getWidth() || potencialPosition.height + moveWithHeight >= this->getHeight();
+}
+
 bool Board::neighbourExists(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition)
 {
-	if(potencialPosition.width + moveWithWidth < 0 ||
-			potencialPosition.height + moveWithHeight < 0)
+	if(this->isNeighbourPositionNegative(moveWithWidth, moveWithHeight, potencialPosition))
 		return false;
-	if(potencialPosition.width + moveWithWidth >= this->getWidth() ||
-			potencialPosition.height + moveWithHeight >= this->getHeight())
+	if(this->isNeighbourPositionGreaterThanSize(moveWithWidth, moveWithHeight, potencialPosition))
 		return false;
+
 	if(this->isEmpty(potencialPosition.width + moveWithWidth,potencialPosition.height + moveWithHeight)) 
 		return true;
 	else return false;
@@ -262,10 +280,10 @@ bool Board::warnsdorff()
 	//this->printBoard();
 	//std::cout << "Width" << getWidth() << std::endl;
 	//std::cout << "Height" << getHeight() << std::endl;
-//	std::cout << std::endl;
+	//	std::cout << std::endl;
 	while(this->m_round <= (this->getHeight()*this->getWidth()))
 	{
-//		std::cout << m_round++ << std::endl;
+	//  std::cout << m_round++ << std::endl;
 		if(!this->move()) return false;
 	//	break;
 	//	this->printBoard();

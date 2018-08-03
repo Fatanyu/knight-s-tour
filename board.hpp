@@ -31,7 +31,7 @@ class Board
 	Coordinates m_actualPosition;
 
 	/**
-	 * WTF??
+	 * 
 	 */
 	int m_round;
 
@@ -46,17 +46,19 @@ class Board
 	void initBoard(int sizeWidth, int sizeHeight);
 
 	/**
-	 *
+	 * Simple getter
+	 * @return Width size of the board. Returns zero when width is zero
 	 */
 	int getWidth();
 
 	/**
-	 *
+	 * Simple getter
+	 * @return Height size of the chessboard
 	 */
 	int getHeight();
 
 	/**
-	 *
+	 * Sets random location of the Knight
 	 */
 	void initPosition();
 
@@ -66,7 +68,9 @@ class Board
 	bool positionExists(int moveWithWidth, int moveWithHeight);
 
 	/**
-	 *
+	 * Checks if potencial position is empty
+	 * @param moveWithWidth Number which will be added to current position width
+	 * @param moveWithHeight Number which will be added to current position height
 	 */
 	bool isEmpty(int newWidth, int newHeight);
 
@@ -81,24 +85,64 @@ class Board
 	bool canMove();
 
 	/**
-	 *
+	 * Reset number generator
 	 */
 	void initRand();
 
 	/**
-	 *
+	 * Count neighbours for potencial location
+	 * @param moveWithWidth Number which will be added to current position width
+	 * @param moveWithHeight Number which will be added to current position height
+	 * @return Final count of neighbours. Range of values is <0-8>
 	 */
 	int countNeighbours(int moveWithWidth, int moveWithHeight);
 
 	/**
-	 *
+	 * Check if potencial position has neighbour
+	 * @param moveWithWidth Number which will be added to potencial position width
+	 * @param moveWithHeight Number which will be added to potencial position height
+	 * @return True when potencial position has neighbour 
 	 */
 	bool neighbourExists(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition);
 
 	/**
-	 * Simple getter which returns current position
+	 * Simple getter
+	 * @return Current position
 	 */
 	Coordinates getPosition();
+
+	/**
+	 * Check if new position is within chessboard range
+	 * @param moveWithWidth Number which will be added to current position width
+	 * @param moveWithHeight Number which will be added to current position height
+	 * @return True when new width or new height is negative
+	 */
+	bool isPotencialPositionNegative(int moveWithWidth, int moveWithHeight);
+
+	/**
+	 * Check if new position is within chessboard range
+	 * @param moveWithWidth Number which will be added to current position width
+	 * @param moveWithHeight Number which will be added to current position height
+	 * @return True when new width or new height is greater then max sizes of chessboard
+	 */
+	bool isPotencialPositionGreaterThanSize(int moveWithWidth, int moveWithHeight);
+
+	/**
+	 * Check if new neighbour position is within chessboard range
+	 * @param moveWithWidth Number which will be added to potencial position width
+	 * @param moveWithHeight Number which will be added to potencial position height
+	 * @return True when new width or new height is negative
+	 */
+	bool isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition);
+
+	/**
+	 * Check if new neighbour position is within chessboard range
+	 * @param moveWithWidth Number which will be added to potencial position width
+	 * @param moveWithHeight Number which will be added to potencial position height
+	 * @return True when new width or new height is greater then max sizes of chessboard
+	 */
+	bool isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition);
+
 
 public:
 

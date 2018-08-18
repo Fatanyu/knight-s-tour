@@ -6,7 +6,7 @@
 #include <cstdlib>
 
 /**
- * Classic A-H and 1-8 can not be used, so there are two numbers
+ * Classic chessboard notation (A-H and 1-8) can not be used, so there are numbers instead of alphabet
  */
 struct Coordinates
 {
@@ -26,22 +26,27 @@ class Board
 	std::vector<std::vector<int>> m_board;
 	
 	/**
-	 * This is position where Knight actually is
+	 * This is position where Knight stands
 	 */
 	Coordinates m_actualPosition;
 
 	/**
-	 * 
+	 * This number represents moves count. Value can not be higher than chessboard.width * chessboard.height, exact match means solution.
 	 */
 	int m_round;
 
 	/**
-	 *
+	 * Set new Knight's position
+	 * @param newPosition New Knight's position
+	 * @return True on successful move
 	 */
 	bool setPosition(Coordinates newPosition);
 	
 	/**
-	 *
+	 * Chessboard initialization. Create matrix and sets every position to zero
+	 * TODO checks
+	 * @param sizeWidth New Chessboard width
+	 * @param sizeHeight New Cheesboard height
 	 */
 	void initBoard(int sizeWidth, int sizeHeight);
 
@@ -63,24 +68,29 @@ class Board
 	void initPosition();
 
 	/**
-	 *
+	 * Check if position is inside chessboard
+	 * @return True when position is inside chessboard
 	 */
 	bool positionExists(int moveWithWidth, int moveWithHeight);
 
 	/**
-	 * Checks if potencial position is empty
+	 * Checks if potencial position on chessboard is empty (is zero)
 	 * @param moveWithWidth Number which will be added to current position width
 	 * @param moveWithHeight Number which will be added to current position height
 	 */
 	bool isEmpty(int newWidth, int newHeight);
 
 	/**
-	 *
+	 * Move Knight to the new position.
+	 * New position must have the least count of the neighbours.
+	 * When multiple positions have same neighbours count then first (TODO random) neighbour will be new position.
+	 * @return True when move has been done.
 	 */
 	bool move();
 
 	/**
-	 *
+	 * Check if move can be done
+	 * @return True when new position exists (move can be done)
 	 */
 	bool canMove();
 

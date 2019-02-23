@@ -1,4 +1,4 @@
-CXX = g++
+CXX = g++-8
 RM = rm -f
 CPPFLAGS = -std=c++11 -pedantic -Wall -Wextra
 OUTPUT_FILE = run-me

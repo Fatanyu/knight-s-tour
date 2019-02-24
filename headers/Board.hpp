@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <cstdlib>
+#include "BoardSize.hpp"
 
 /**
  * Classic chessboard notation (A-H and 1-8) can not be used, so there are numbers instead of alphabet

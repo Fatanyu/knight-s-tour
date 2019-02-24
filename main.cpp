@@ -1,5 +1,5 @@
 #include <iostream>
-#include "headers/game.hpp"
+#include "headers/Game.hpp"
 #include <memory>
 
 //int main(int argc, char** argv)

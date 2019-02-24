@@ -1,5 +1,4 @@
-#ifndef BOARD_H
-#define BOARD_H
+#pragma once 
 
 #include <vector>
 #include <iostream>
@@ -181,15 +180,3 @@ public:
 	void reset();
 };
 
-
-
-
-
-
-
-
-
-
-
-
-#endif

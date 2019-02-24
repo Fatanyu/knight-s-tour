@@ -1,9 +1,12 @@
 CXX = g++-8
 RM = rm -f
-CPPFLAGS = -std=c++11 -pedantic -Wall -Wextra
+CPPFLAGS = -std=c++17 -pedantic -Wall -Wextra
 OUTPUT_FILE = run-me
+SOURCEDIR := sources
+SOURCE_FILES := $(shell find $(SOURCEDIR) -name '*.cpp')
 FILES += main.cpp
-FILES += board.cpp
+#FILES += board.cpp
+FILES += $(SOURCE_FILES)
 OBJS = *.o
 
 all:

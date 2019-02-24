@@ -1,7 +1,7 @@
 CXX = g++-8
 RM = rm -f
 CPPFLAGS = -std=c++17 -pedantic -Wall -Wextra
-OUTPUT_FILE = run-me
+OUTPUT_FILE = run-me.out
 SOURCEDIR := sources
 SOURCE_FILES := $(shell find $(SOURCEDIR) -name '*.cpp')
 FILES += main.cpp

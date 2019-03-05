@@ -15,8 +15,7 @@ struct Coordinates
 };
 
 /**
- * Represents chessboard. It has no height/width validation
- * TODO check bad size combination
+ * Represents chessboard. It has no height/width validation => validation is via BoardSize::hasValidSize()
  */
 class Board
 {
@@ -162,6 +161,12 @@ public:
 	 * @param sizeHeight Size of chessboard's height defined as integer (originally numbers)
 	 */
 	Board(int sizeWidth, int sizeHeight);
+
+	/**
+	 * Basic constructor
+	 * @param boardSize Class containing board sizes
+	 */
+	Board(BoardSize boardSize);
 
 	/**
 	 * Print chessboard with path to terminal

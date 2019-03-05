@@ -8,6 +8,16 @@ Board::Board(int sizeWidth, int sizeHeight)
 	this->initPosition();
 	//this->printBoard();
 }
+
+Board::Board(BoardSize boardSize)
+{
+	this->m_round = 1;
+	this->initRand();
+	this->initBoard(boardSize.getWidth(),boardSize.getHeight());
+	this->initPosition();
+	//this->printBoard();
+}
+
 void Board::reset()
 {
 	this->m_round = 1;

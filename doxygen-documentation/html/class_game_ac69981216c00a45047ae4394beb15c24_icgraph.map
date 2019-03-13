@@ -1,0 +1,5 @@
+<map id="Game::askForBoardSize" name="Game::askForBoardSize">
+<area shape="rect" id="node2" href="$class_game.html#a2cdcb0d3fdb7b422a3c5353b946cce48" title="Game::giveMeBoardSizes" alt="" coords="219,5,393,32"/>
+<area shape="rect" id="node3" href="$class_game.html#ae8638ccdb0ef3bf39a6affa30aa1258f" title="Game::startGame" alt="" coords="441,5,568,32"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="616,5,667,32"/>
+</map>

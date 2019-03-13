@@ -1,0 +1,6 @@
+<map id="BoardSize::hasHeightFourAndHaveZeroSolutions" name="BoardSize::hasHeightFourAndHaveZeroSolutions">
+<area shape="rect" id="node2" href="$class_board_size.html#a42eaf78c788508416583e15a88c0d852" title="BoardSize::hasValidSize" alt="" coords="228,13,395,39"/>
+<area shape="rect" id="node3" href="$class_game.html#a2cdcb0d3fdb7b422a3c5353b946cce48" title="Game::giveMeBoardSizes" alt="" coords="443,13,617,39"/>
+<area shape="rect" id="node4" href="$class_game.html#ae8638ccdb0ef3bf39a6affa30aa1258f" title="Game::startGame" alt="" coords="665,13,792,39"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="840,13,891,39"/>
+</map>

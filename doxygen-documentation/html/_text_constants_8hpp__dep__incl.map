@@ -1,9 +1,0 @@
-<map id="headers/TextConstants.hpp" name="headers/TextConstants.hpp">
-<area shape="rect" id="node2" href="$_board_size_8hpp.html" title="headers/BoardSize.hpp" alt="" coords="189,80,347,107"/>
-<area shape="rect" id="node3" href="$_board_8hpp.html" title="headers/Board.hpp" alt="" coords="119,155,249,181"/>
-<area shape="rect" id="node8" href="$_board_size_8cpp.html" title="sources/BoardSize.cpp" alt="" coords="273,155,431,181"/>
-<area shape="rect" id="node4" href="$_game_8hpp.html" title="headers/Game.hpp" alt="" coords="41,229,173,256"/>
-<area shape="rect" id="node7" href="$_board_8cpp.html" title="sources/Board.cpp" alt="" coords="197,229,328,256"/>
-<area shape="rect" id="node5" href="$main_8cpp.html" title="main.cpp" alt="" coords="5,304,80,331"/>
-<area shape="rect" id="node6" href="$_game_8cpp.html" title="sources/Game.cpp" alt="" coords="105,304,237,331"/>
-</map>

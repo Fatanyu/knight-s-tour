@@ -1,7 +1,0 @@
-<map id="BoardSize::hasValidSize" name="BoardSize::hasValidSize">
-<area shape="rect" id="node2" href="$class_board_size.html#ab2f6a6c92fb42d088c6ea6bbc23c06b3" title="BoardSize::hasHeightOrWidth\lSmallerThanThree" alt="" coords="220,5,417,47"/>
-<area shape="rect" id="node3" href="$class_board_size.html#a038670e6b6db8c96455fa3ac08c554e3" title="BoardSize::hasHeightThree\lAndHaveZeroSolutions" alt="" coords="227,71,410,112"/>
-<area shape="rect" id="node4" href="$class_board_size.html#a14c3de9b8d826d220aad07aba8159d46" title="BoardSize::hasWidthThree\lAndHaveZeroSolutions" alt="" coords="229,136,408,177"/>
-<area shape="rect" id="node5" href="$class_board_size.html#a3c3c3274b0c583a401149a575ab44268" title="BoardSize::hasHeightFour\lAndHaveZeroSolutions" alt="" coords="231,201,406,243"/>
-<area shape="rect" id="node6" href="$class_board_size.html#aa9fa282129746401c667b5a3a9dcd7ca" title="BoardSize::hasWidthFourAnd\lHaveZeroSolutions" alt="" coords="221,267,416,308"/>
-</map>

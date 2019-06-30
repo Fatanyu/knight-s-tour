@@ -1,4 +1,4 @@
-#include "../headers/BoardSize.hpp"
+#include "BoardSize.hpp"
 
 
 /**

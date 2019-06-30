@@ -1,4 +1,4 @@
-#include "../headers/Game.hpp"
+#include "Game.hpp"
 
 void Game::startGame()
 {

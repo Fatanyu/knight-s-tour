@@ -9,11 +9,11 @@ include_directories(headers)
 include_directories(sources)
 
 add_executable(knight-s-tour
-        headers/Board.hpp
-        headers/BoardSize.hpp
-        headers/Game.hpp
-        headers/TextConstants.hpp
+        sources/Board.hpp
+        sources/BoardSize.hpp
+        sources/Game.hpp
+        sources/TextConstants.hpp
         sources/Board.cpp
         sources/BoardSize.cpp
         sources/Game.cpp
-        main.cpp)
+        sources/main.cpp)

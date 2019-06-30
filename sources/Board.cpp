@@ -1,4 +1,4 @@
-#include "../headers/Board.hpp"
+#include "Board.hpp"
 
 Board::Board(int sizeWidth, int sizeHeight)
 {

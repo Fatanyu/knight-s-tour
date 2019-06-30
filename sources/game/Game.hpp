@@ -1,6 +1,6 @@
 #pragma once
 
-#include "chessboards/Board.hpp"
+#include "chessboards/Chessboard.hpp"
 #include <memory>
 #include <iostream>
 
@@ -8,21 +8,20 @@ namespace fatanyu
 {
     class Game
     {
-    protected:
-        Board *m_board;
-
-        BoardSize giveMeBoardSizes();
-
-        BoardSize askForBoardSize();
-
     public:
+        Game();
+        ~Game();
+
         /**
          *
          */
         void startGame();
 
-        Game();
+    protected:
+        Chessboard *m_board; //TODO use IChessboard
 
-        ~Game();
+        BoardSize giveMeBoardSizes();
+
+        static BoardSize askForBoardSize();
     };
 }

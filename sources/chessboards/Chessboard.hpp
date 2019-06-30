@@ -1,9 +1,11 @@
 #pragma once
 
+#include "BoardSize.hpp"
+#include "IChessboard.hpp"
+
 #include <vector>
 #include <iostream>
 #include <cstdlib>
-#include "BoardSize.hpp"
 
 namespace fatanyu
 {
@@ -19,7 +21,7 @@ namespace fatanyu
     /**
      * Represents chessboard. It has no height/width validation => validation is via BoardSize::hasValidSize()
      */
-    class Board
+    class Chessboard : public IChessboard
     {
         /**
          * 2D matrix as chessboard
@@ -162,13 +164,13 @@ namespace fatanyu
          * @param sizeWidth Size of chessboard's width defined as integer (originally letters)
          * @param sizeHeight Size of chessboard's height defined as integer (originally numbers)
          */
-        Board(int sizeWidth, int sizeHeight);
+        Chessboard(int sizeWidth, int sizeHeight);
 
         /**
          * Basic constructor
          * @param boardSize Class containing board sizes
          */
-        Board(BoardSize boardSize);
+        Chessboard(BoardSize boardSize);
 
         /**
          * Print chessboard with path to terminal

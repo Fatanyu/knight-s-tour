@@ -1,8 +1,8 @@
-#include "Board.hpp"
+#include "Chessboard.hpp"
 
 namespace fatanyu
 {
-    Board::Board(int sizeWidth, int sizeHeight)
+    Chessboard::Chessboard(int sizeWidth, int sizeHeight)
     {
         this->m_round = 1;
         this->initRand();
@@ -11,7 +11,7 @@ namespace fatanyu
         //this->printBoard();
     }
 
-    Board::Board(BoardSize boardSize)
+    Chessboard::Chessboard(BoardSize boardSize)
     {
         this->m_round = 1;
         this->initRand();
@@ -20,7 +20,7 @@ namespace fatanyu
         //this->printBoard();
     }
 
-    void Board::reset()
+    void Chessboard::reset()
     {
         this->m_round = 1;
         int width = this->getWidth();
@@ -31,12 +31,12 @@ namespace fatanyu
     }
 
 
-    void Board::initRand()
+    void Chessboard::initRand()
     {
         srand(time(nullptr));
     }
 
-    void Board::initPosition()
+    void Chessboard::initPosition()
     {
         //Coordinates position = {2,2};
         Coordinates position = {rand() % (this->getWidth() - 1), rand() % (this->getHeight() - 1)};
@@ -44,7 +44,7 @@ namespace fatanyu
         this->setPosition(position);
     }
 
-    void Board::initBoard(int sizeWidth, int sizeHeight)
+    void Chessboard::initBoard(int sizeWidth, int sizeHeight)
     {
         for (int indexHeight = 0; indexHeight < sizeHeight; indexHeight++)
         {
@@ -57,7 +57,7 @@ namespace fatanyu
         }
     }
 
-    void Board::printBoard()
+    void Chessboard::printBoard()
     {
         for (auto &row : this->m_board)
         {
@@ -81,12 +81,12 @@ namespace fatanyu
         std::cout << std::endl;
     }
 
-    Coordinates Board::getPosition()
+    Coordinates Chessboard::getPosition()
     {
         return this->m_actualPosition;
     }
 
-    bool Board::move()
+    bool Chessboard::move()
     {
         //std::array<int,8> counts{0};
         //int maxValue = -1;
@@ -218,7 +218,7 @@ namespace fatanyu
         return true;
     }
 
-    int Board::countNeighbours(int moveWithWidth, int moveWithHeight)
+    int Chessboard::countNeighbours(int moveWithWidth, int moveWithHeight)
     {
         int count = 0;
         Coordinates potencialPosition = {
@@ -261,24 +261,24 @@ namespace fatanyu
         return count;
     }
 
-    bool Board::isEmpty(int newWidth, int newHeight)
+    bool Chessboard::isEmpty(int newWidth, int newHeight)
     {
         return this->m_board.at(newHeight).at(newWidth) == 0;
     }
 
-    bool Board::isPotencialPositionNegative(int moveWithWidth, int moveWithHeight)
+    bool Chessboard::isPotencialPositionNegative(int moveWithWidth, int moveWithHeight)
     {
         return (this->m_actualPosition.width + moveWithWidth) < 0 ||
                (this->m_actualPosition.height + moveWithHeight) < 0;
     }
 
-    bool Board::isPotencialPositionGreaterThanSize(int moveWithWidth, int moveWithHeight)
+    bool Chessboard::isPotencialPositionGreaterThanSize(int moveWithWidth, int moveWithHeight)
     {
         return (this->m_actualPosition.width + moveWithWidth) >= this->getWidth() ||
                (this->m_actualPosition.height + moveWithHeight) >= this->getHeight();
     }
 
-    bool Board::positionExists(int moveWithWidth, int moveWithHeight)
+    bool Chessboard::positionExists(int moveWithWidth, int moveWithHeight)
     {
         if (this->isPotencialPositionNegative(moveWithWidth, moveWithHeight))
         {
@@ -299,19 +299,19 @@ namespace fatanyu
         }
     }
 
-    bool Board::isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition)
+    bool Chessboard::isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition)
     {
         return (potencialPosition.width + moveWithWidth) < 0 || (potencialPosition.height + moveWithHeight) < 0;
     }
 
     bool
-    Board::isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition)
+    Chessboard::isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition)
     {
         return potencialPosition.width + moveWithWidth >= this->getWidth() ||
                potencialPosition.height + moveWithHeight >= this->getHeight();
     }
 
-    bool Board::neighbourExists(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition)
+    bool Chessboard::neighbourExists(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition)
     {
         if (this->isNeighbourPositionNegative(moveWithWidth, moveWithHeight, potencialPosition))
         {
@@ -332,7 +332,7 @@ namespace fatanyu
         }
     }
 
-    bool Board::setPosition(Coordinates newPosition)
+    bool Chessboard::setPosition(Coordinates newPosition)
     {
         //if(newPosition.height < this->getHeight() && newPosition.width < this->getWidth())
         //{
@@ -345,7 +345,7 @@ namespace fatanyu
         //	return false;
     }
 
-    bool Board::warnsdorff()
+    bool Chessboard::warnsdorff()
     {
         //this->printBoard();
         //std::cout << "Width" << getWidth() << std::endl;
@@ -366,7 +366,7 @@ namespace fatanyu
         return true;
     }
 
-    int Board::getWidth()
+    int Chessboard::getWidth()
     {
         if (this->getHeight() == 0)
         {
@@ -378,7 +378,7 @@ namespace fatanyu
         }
     }
 
-    int Board::getHeight()
+    int Chessboard::getHeight()
     {
         return this->m_board.size();
     }

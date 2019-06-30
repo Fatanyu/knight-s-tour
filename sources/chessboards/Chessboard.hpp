@@ -9,6 +9,7 @@
 
 namespace fatanyu
 {
+
     /**
      * Classic chessboard notation (A-H and 1-8) can not be used, so there are numbers instead of alphabet
      */
@@ -23,6 +24,38 @@ namespace fatanyu
      */
     class Chessboard : public IChessboard
     {
+    public:
+
+        /**
+         * Basic constructor
+         * @param sizeWidth Size of chessboard's width defined as integer (originally letters)
+         * @param sizeHeight Size of chessboard's height defined as integer (originally numbers)
+         */
+        Chessboard(int sizeWidth, int sizeHeight);
+
+        /**
+         * Basic constructor
+         * @param boardSize Class containing board sizes
+         */
+        Chessboard(BoardSize boardSize);
+
+        /**
+         * Print chessboard with path to terminal
+         * TODO - fix spacing dynamically
+         */
+        void printBoard() override;
+
+        /**
+         * Find path by warnsdorff algorithms
+         * @return True when path has been found
+         */
+        bool warnsdorff();
+
+        /**
+         * Reset chessboard (sizes remain)
+         */
+        void reset() override;
+    protected:
         /**
          * 2D matrix as chessboard
          */
@@ -155,38 +188,5 @@ namespace fatanyu
          * @return True when new width or new height is greater then max sizes of chessboard
          */
         bool isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition);
-
-
-    public:
-
-        /**
-         * Basic constructor
-         * @param sizeWidth Size of chessboard's width defined as integer (originally letters)
-         * @param sizeHeight Size of chessboard's height defined as integer (originally numbers)
-         */
-        Chessboard(int sizeWidth, int sizeHeight);
-
-        /**
-         * Basic constructor
-         * @param boardSize Class containing board sizes
-         */
-        Chessboard(BoardSize boardSize);
-
-        /**
-         * Print chessboard with path to terminal
-         * TODO - fix spacing dynamically
-         */
-        void printBoard();
-
-        /**
-         * Find path by warnsdorff algorithms
-         * @return True when path has been found
-         */
-        bool warnsdorff();
-
-        /**
-         * Reset chessboard (sizes remain)
-         */
-        void reset();
     };
 }

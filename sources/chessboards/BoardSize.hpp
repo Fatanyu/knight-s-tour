@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "TextConstants.hpp"
+#include "constants/TextConstants.hpp"
 
 namespace fatanyu
 {

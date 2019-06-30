@@ -10,7 +10,10 @@ namespace fatanyu
 
         // In case of fail, just reset and do it again
         // TODO random next step in case of multiple choices
-        while (!m_board->warnsdorff()) m_board->reset();
+        while (!m_board->warnsdorff())
+        {
+            m_board->reset();
+        }
 
         //board->printBoard();
         return;

@@ -33,7 +33,7 @@ namespace fatanyu
 
     void Board::initRand()
     {
-        srand(time(NULL));
+        srand(time(nullptr));
     }
 
     void Board::initPosition()
@@ -59,7 +59,7 @@ namespace fatanyu
 
     void Board::printBoard()
     {
-        for (auto row : this->m_board)
+        for (auto &row : this->m_board)
         {
             for (auto cell : row)
             {
@@ -169,7 +169,9 @@ namespace fatanyu
         }
         //std::cout << "1" << std::endl;
         if (identifier == -1)
-        { return false; }
+        {
+            return false;
+        }
         //std::cout << "2" << std::endl;
 
         Coordinates newPosition{this->m_actualPosition.width, this->m_actualPosition.height};
@@ -207,6 +209,8 @@ namespace fatanyu
                 newPosition.width += 2;
                 newPosition.height += -1;
                 break;
+            default:
+                break; //TODO throw error
 
         }
         this->setPosition(newPosition);
@@ -223,32 +227,43 @@ namespace fatanyu
         };
 
         if (this->neighbourExists(2, 1, potencialPosition))
-        { count++; }
+        {
+            count++;
+        }
         if (this->neighbourExists(1, 2, potencialPosition))
-        { count++; }
+        {
+            count++;
+        }
         if (this->neighbourExists(-2, 1, potencialPosition))
-        { count++; }
+        {
+            count++;
+        }
         if (this->neighbourExists(-1, 2, potencialPosition))
-        { count++; }
+        {
+            count++;
+        }
         if (this->neighbourExists(-2, -1, potencialPosition))
-        { count++; }
+        {
+            count++;
+        }
         if (this->neighbourExists(-1, -2, potencialPosition))
-        { count++; }
+        {
+            count++;
+        }
         if (this->neighbourExists(1, -2, potencialPosition))
-        { count++; }
+        {
+            count++;
+        }
         if (this->neighbourExists(2, -1, potencialPosition))
-        { count++; }
+        {
+            count++;
+        }
         return count;
     }
 
     bool Board::isEmpty(int newWidth, int newHeight)
     {
-        if (this->m_board.at(newHeight).at(newWidth) != 0)
-        {
-            return false;
-        }
-        else
-        { return true; }
+        return this->m_board.at(newHeight).at(newWidth) == 0;
     }
 
     bool Board::isPotencialPositionNegative(int moveWithWidth, int moveWithHeight)
@@ -279,7 +294,9 @@ namespace fatanyu
             return true;
         }
         else
-        { return false; }
+        {
+            return false;
+        }
     }
 
     bool Board::isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition)
@@ -310,7 +327,9 @@ namespace fatanyu
             return true;
         }
         else
-        { return false; }
+        {
+            return false;
+        }
     }
 
     bool Board::setPosition(Coordinates newPosition)
@@ -336,7 +355,9 @@ namespace fatanyu
         {
             //  std::cout << m_round++ << std::endl;
             if (!this->move())
-            { return false; }
+            {
+                return false;
+            }
             //	break;
             //	this->printBoard();
         }
@@ -348,9 +369,13 @@ namespace fatanyu
     int Board::getWidth()
     {
         if (this->getHeight() == 0)
-        { return 0; }
+        {
+            return 0;
+        }
         else
-        { return this->m_board.at(0).size(); }
+        {
+            return this->m_board.at(0).size();
+        }
     }
 
     int Board::getHeight()

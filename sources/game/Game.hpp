@@ -1,6 +1,6 @@
-#pragma once 
+#pragma once
 
-#include "Board.hpp"
+#include "chessboards/Board.hpp"
 #include <memory>
 #include <iostream>
 

@@ -78,23 +78,33 @@ namespace fatanyu
     {
         // 0x0, 1x1, 1x0, 2x1, 2x2 and all minus values
         if (this->hasHeightOrWidthSmallerThanThree())
-        { return false; }
+        {
+            return false;
+        }
 
         // 3x1, 3x2, 3x3, 3x5, 3x6
         if (this->hasHeightThreeAndHaveZeroSolutions())
-        { return false; }
+        {
+            return false;
+        }
 
         // 1x3, 2x3, 3x3, 5x3, 6x3
         if (this->hasWidthThreeAndHaveZeroSolutions())
-        { return false; }
+        {
+            return false;
+        }
 
         // 4x1, 4x2, 4x4
         if (this->hasHeightFourAndHaveZeroSolutions())
-        { return false; }
+        {
+            return false;
+        }
 
         // 1x4, 2x4, 4x4
         if (this->hasWidthFourAndHaveZeroSolutions())
-        { return false; }
+        {
+            return false;
+        }
 
         return true;
     }

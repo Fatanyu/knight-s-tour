@@ -4,20 +4,25 @@
 #include <memory>
 #include <iostream>
 
-
-class Game
+namespace fatanyu
 {
-protected:
-	Board *m_board;
+    class Game
+    {
+    protected:
+        Board *m_board;
 
-	BoardSize giveMeBoardSizes();
-	BoardSize askForBoardSize();
+        BoardSize giveMeBoardSizes();
 
-public:
-	/**
-	 *
-	 */
-	void startGame();
-	Game();
-	~Game();
-};
+        BoardSize askForBoardSize();
+
+    public:
+        /**
+         *
+         */
+        void startGame();
+
+        Game();
+
+        ~Game();
+    };
+}

@@ -1,11 +1,8 @@
-#include <iostream>
 #include "Game.hpp"
-#include <memory>
 
-//int main(int argc, char** argv)
-int main(void)
+int main()
 {
-	Game newGame;
+	fatanyu::Game newGame;
 	newGame.startGame();
 	return 0;
 }

@@ -1,188 +1,190 @@
-#pragma once 
+#pragma once
 
 #include <vector>
 #include <iostream>
 #include <cstdlib>
 #include "BoardSize.hpp"
 
-/**
- * Classic chessboard notation (A-H and 1-8) can not be used, so there are numbers instead of alphabet
- */
-struct Coordinates
+namespace fatanyu
 {
-	int width;
-	int height;
-};
+    /**
+     * Classic chessboard notation (A-H and 1-8) can not be used, so there are numbers instead of alphabet
+     */
+    struct Coordinates
+    {
+        int width;
+        int height;
+    };
 
-/**
- * Represents chessboard. It has no height/width validation => validation is via BoardSize::hasValidSize()
- */
-class Board
-{
-	/**
-	 * 2D matrix as chessboard
-	 */
-	std::vector<std::vector<int>> m_board;
-	
-	/**
-	 * This is position where Knight stands
-	 */
-	Coordinates m_actualPosition;
+    /**
+     * Represents chessboard. It has no height/width validation => validation is via BoardSize::hasValidSize()
+     */
+    class Board
+    {
+        /**
+         * 2D matrix as chessboard
+         */
+        std::vector<std::vector<int>> m_board;
 
-	/**
-	 * This number represents moves count. Value can not be higher than chessboard.width * chessboard.height, exact match means solution.
-	 */
-	int m_round;
+        /**
+         * This is position where Knight stands
+         */
+        Coordinates m_actualPosition;
 
-	/**
-	 * Set new Knight's position
-	 * @param newPosition New Knight's position
-	 * @return True on successful move
-	 */
-	bool setPosition(Coordinates newPosition);
-	
-	/**
-	 * Chessboard initialization. Create matrix and sets every position to zero
-	 * TODO checks
-	 * @param sizeWidth New Chessboard width
-	 * @param sizeHeight New Cheesboard height
-	 */
-	void initBoard(int sizeWidth, int sizeHeight);
+        /**
+         * This number represents moves count. Value can not be higher than chessboard.width * chessboard.height, exact match means solution.
+         */
+        int m_round;
 
-	/**
-	 * Simple getter
-	 * @return Width size of the board. Returns zero when width is zero
-	 */
-	int getWidth();
+        /**
+         * Set new Knight's position
+         * @param newPosition New Knight's position
+         * @return True on successful move
+         */
+        bool setPosition(Coordinates newPosition);
 
-	/**
-	 * Simple getter
-	 * @return Height size of the chessboard
-	 */
-	int getHeight();
+        /**
+         * Chessboard initialization. Create matrix and sets every position to zero
+         * TODO checks
+         * @param sizeWidth New Chessboard width
+         * @param sizeHeight New Cheesboard height
+         */
+        void initBoard(int sizeWidth, int sizeHeight);
 
-	/**
-	 * Sets random location of the Knight
-	 */
-	void initPosition();
+        /**
+         * Simple getter
+         * @return Width size of the board. Returns zero when width is zero
+         */
+        int getWidth();
 
-	/**
-	 * Check if position is inside chessboard
-	 * @return True when position is inside chessboard
-	 */
-	bool positionExists(int moveWithWidth, int moveWithHeight);
+        /**
+         * Simple getter
+         * @return Height size of the chessboard
+         */
+        int getHeight();
 
-	/**
-	 * Checks if potencial position on chessboard is empty (is zero)
-	 * @param moveWithWidth Number which will be added to current position width
-	 * @param moveWithHeight Number which will be added to current position height
-	 */
-	bool isEmpty(int newWidth, int newHeight);
+        /**
+         * Sets random location of the Knight
+         */
+        void initPosition();
 
-	/**
-	 * Move Knight to the new position.
-	 * New position must have the least count of the neighbours.
-	 * When multiple positions have same neighbours count then first (TODO random) neighbour will be new position.
-	 * @return True when move has been done.
-	 */
-	bool move();
+        /**
+         * Check if position is inside chessboard
+         * @return True when position is inside chessboard
+         */
+        bool positionExists(int moveWithWidth, int moveWithHeight);
 
-	/**
-	 * Check if move can be done
-	 * @return True when new position exists (move can be done)
-	 */
-	bool canMove();
+        /**
+         * Checks if potencial position on chessboard is empty (is zero)
+         * @param moveWithWidth Number which will be added to current position width
+         * @param moveWithHeight Number which will be added to current position height
+         */
+        bool isEmpty(int newWidth, int newHeight);
 
-	/**
-	 * Reset number generator
-	 */
-	void initRand();
+        /**
+         * Move Knight to the new position.
+         * New position must have the least count of the neighbours.
+         * When multiple positions have same neighbours count then first (TODO random) neighbour will be new position.
+         * @return True when move has been done.
+         */
+        bool move();
 
-	/**
-	 * Count neighbours for potencial location
-	 * @param moveWithWidth Number which will be added to current position width
-	 * @param moveWithHeight Number which will be added to current position height
-	 * @return Final count of neighbours. Range of values is <0-8>
-	 */
-	int countNeighbours(int moveWithWidth, int moveWithHeight);
+        /**
+         * Check if move can be done
+         * @return True when new position exists (move can be done)
+         */
+        bool canMove();
 
-	/**
-	 * Check if potencial position has neighbour
-	 * @param moveWithWidth Number which will be added to potencial position width
-	 * @param moveWithHeight Number which will be added to potencial position height
-	 * @return True when potencial position has neighbour 
-	 */
-	bool neighbourExists(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition);
+        /**
+         * Reset number generator
+         */
+        void initRand();
 
-	/**
-	 * Simple getter
-	 * @return Current position
-	 */
-	Coordinates getPosition();
+        /**
+         * Count neighbours for potencial location
+         * @param moveWithWidth Number which will be added to current position width
+         * @param moveWithHeight Number which will be added to current position height
+         * @return Final count of neighbours. Range of values is <0-8>
+         */
+        int countNeighbours(int moveWithWidth, int moveWithHeight);
 
-	/**
-	 * Check if new position is within chessboard range
-	 * @param moveWithWidth Number which will be added to current position width
-	 * @param moveWithHeight Number which will be added to current position height
-	 * @return True when new width or new height is negative
-	 */
-	bool isPotencialPositionNegative(int moveWithWidth, int moveWithHeight);
+        /**
+         * Check if potencial position has neighbour
+         * @param moveWithWidth Number which will be added to potencial position width
+         * @param moveWithHeight Number which will be added to potencial position height
+         * @return True when potencial position has neighbour
+         */
+        bool neighbourExists(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition);
 
-	/**
-	 * Check if new position is within chessboard range
-	 * @param moveWithWidth Number which will be added to current position width
-	 * @param moveWithHeight Number which will be added to current position height
-	 * @return True when new width or new height is greater then max sizes of chessboard
-	 */
-	bool isPotencialPositionGreaterThanSize(int moveWithWidth, int moveWithHeight);
+        /**
+         * Simple getter
+         * @return Current position
+         */
+        Coordinates getPosition();
 
-	/**
-	 * Check if new neighbour position is within chessboard range
-	 * @param moveWithWidth Number which will be added to potencial position width
-	 * @param moveWithHeight Number which will be added to potencial position height
-	 * @return True when new width or new height is negative
-	 */
-	bool isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition);
+        /**
+         * Check if new position is within chessboard range
+         * @param moveWithWidth Number which will be added to current position width
+         * @param moveWithHeight Number which will be added to current position height
+         * @return True when new width or new height is negative
+         */
+        bool isPotencialPositionNegative(int moveWithWidth, int moveWithHeight);
 
-	/**
-	 * Check if new neighbour position is within chessboard range
-	 * @param moveWithWidth Number which will be added to potencial position width
-	 * @param moveWithHeight Number which will be added to potencial position height
-	 * @return True when new width or new height is greater then max sizes of chessboard
-	 */
-	bool isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition);
+        /**
+         * Check if new position is within chessboard range
+         * @param moveWithWidth Number which will be added to current position width
+         * @param moveWithHeight Number which will be added to current position height
+         * @return True when new width or new height is greater then max sizes of chessboard
+         */
+        bool isPotencialPositionGreaterThanSize(int moveWithWidth, int moveWithHeight);
+
+        /**
+         * Check if new neighbour position is within chessboard range
+         * @param moveWithWidth Number which will be added to potencial position width
+         * @param moveWithHeight Number which will be added to potencial position height
+         * @return True when new width or new height is negative
+         */
+        bool isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition);
+
+        /**
+         * Check if new neighbour position is within chessboard range
+         * @param moveWithWidth Number which will be added to potencial position width
+         * @param moveWithHeight Number which will be added to potencial position height
+         * @return True when new width or new height is greater then max sizes of chessboard
+         */
+        bool isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition);
 
 
-public:
+    public:
 
-	/**
-	 * Basic constructor
-	 * @param sizeWidth Size of chessboard's width defined as integer (originally letters)
-	 * @param sizeHeight Size of chessboard's height defined as integer (originally numbers)
-	 */
-	Board(int sizeWidth, int sizeHeight);
+        /**
+         * Basic constructor
+         * @param sizeWidth Size of chessboard's width defined as integer (originally letters)
+         * @param sizeHeight Size of chessboard's height defined as integer (originally numbers)
+         */
+        Board(int sizeWidth, int sizeHeight);
 
-	/**
-	 * Basic constructor
-	 * @param boardSize Class containing board sizes
-	 */
-	Board(BoardSize boardSize);
+        /**
+         * Basic constructor
+         * @param boardSize Class containing board sizes
+         */
+        Board(BoardSize boardSize);
 
-	/**
-	 * Print chessboard with path to terminal
-	 * TODO - fix spacing dynamically
-	 */
-	void printBoard();
+        /**
+         * Print chessboard with path to terminal
+         * TODO - fix spacing dynamically
+         */
+        void printBoard();
 
-	/**
-	 * Find path by warnsdorff algorithms
-	 * @return True when path has been found
-	 */
-	bool warnsdorff();
-	
-	/**
-	 * Reset chessboard (sizes remain)
-	 */
-	void reset();
-};
+        /**
+         * Find path by warnsdorff algorithms
+         * @return True when path has been found
+         */
+        bool warnsdorff();
 
+        /**
+         * Reset chessboard (sizes remain)
+         */
+        void reset();
+    };
+}

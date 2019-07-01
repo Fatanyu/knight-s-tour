@@ -18,9 +18,9 @@ namespace fatanyu
         void startGame();
 
     protected:
-        Chessboard *m_board; //TODO use IChessboard
+        std::shared_ptr<Chessboard> m_board; //TODO use IChessboard
 
-        BoardSize giveMeBoardSizes();
+        static BoardSize giveMeBoardSizes();
 
         static BoardSize askForBoardSize();
     };

@@ -4,12 +4,10 @@ namespace fatanyu
 {
     Game::Game()
     {
-        this->m_board = nullptr;
     }
 
     Game::~Game()
     {
-        delete this->m_board;
     }
 
     BoardSize Game::giveMeBoardSizes()
@@ -19,16 +17,16 @@ namespace fatanyu
         {
             std::cout << TextConstants::dashLine << std::endl;
             std::cout << "Give me Chessboard sizes\n";
-            boardSize = this->askForBoardSize();
+            boardSize = Game::askForBoardSize();
         }
         return boardSize;
     }
 
     void Game::startGame()
     {
-        BoardSize boardSize = this->giveMeBoardSizes();
+        const BoardSize boardSize = Game::giveMeBoardSizes();
 
-        this->m_board = new Chessboard(boardSize.getWidth(), boardSize.getHeight());
+        m_board = std::make_shared<Chessboard>(boardSize.getWidth(), boardSize.getHeight());
 
         // In case of fail, just reset and do it again
         // TODO random next step in case of multiple choices

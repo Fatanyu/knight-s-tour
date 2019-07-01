@@ -64,7 +64,7 @@ namespace fatanyu
         /**
          * This is position where Knight stands
          */
-        Coordinates m_actualPosition;
+        Coordinates m_currentPosition;
 
         /**
          * This number represents moves count. Value can not be higher than chessboard.width * chessboard.height, exact match means solution.
@@ -149,7 +149,7 @@ namespace fatanyu
          * @param moveWithHeight Number which will be added to potencial position height
          * @return True when potencial position has neighbour
          */
-        bool neighbourExists(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition);
+        bool neighbourExists(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition);
 
         /**
          * Simple getter
@@ -163,7 +163,7 @@ namespace fatanyu
          * @param moveWithHeight Number which will be added to current position height
          * @return True when new width or new height is negative
          */
-        bool isPotencialPositionNegative(int moveWithWidth, int moveWithHeight);
+        bool isPotentialPositionNegative(int moveWithWidth, int moveWithHeight);
 
         /**
          * Check if new position is within chessboard range
@@ -179,7 +179,7 @@ namespace fatanyu
          * @param moveWithHeight Number which will be added to potencial position height
          * @return True when new width or new height is negative
          */
-        bool isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition);
+        bool isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition);
 
         /**
          * Check if new neighbour position is within chessboard range
@@ -187,6 +187,6 @@ namespace fatanyu
          * @param moveWithHeight Number which will be added to potencial position height
          * @return True when new width or new height is greater then max sizes of chessboard
          */
-        bool isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition);
+        bool isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition);
     };
 }

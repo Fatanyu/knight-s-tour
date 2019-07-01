@@ -4,28 +4,26 @@ namespace fatanyu
 {
     Chessboard::Chessboard(int sizeWidth, int sizeHeight)
     {
-        this->m_round = 1;
+        m_round = 1;
         this->initRand();
         this->initBoard(sizeWidth, sizeHeight);
         this->initPosition();
-        //this->printBoard();
     }
 
     Chessboard::Chessboard(BoardSize boardSize)
     {
-        this->m_round = 1;
+        m_round = 1;
         this->initRand();
         this->initBoard(boardSize.getWidth(), boardSize.getHeight());
         this->initPosition();
-        //this->printBoard();
     }
 
     void Chessboard::reset()
     {
-        this->m_round = 1;
+        m_round = 1;
         int width = this->getWidth();
         int height = this->getHeight();
-        this->m_board.clear();
+        m_board.clear();
         this->initBoard(width, height);
         this->initPosition();
     }
@@ -83,7 +81,7 @@ namespace fatanyu
 
     Coordinates Chessboard::getPosition()
     {
-        return this->m_actualPosition;
+        return m_currentPosition;
     }
 
     bool Chessboard::move()
@@ -174,7 +172,7 @@ namespace fatanyu
         }
         //std::cout << "2" << std::endl;
 
-        Coordinates newPosition{this->m_actualPosition.width, this->m_actualPosition.height};
+        Coordinates newPosition{this->m_currentPosition.width, this->m_currentPosition.height};
         switch (identifier)
         {
             case 1:
@@ -220,67 +218,67 @@ namespace fatanyu
 
     int Chessboard::countNeighbours(int moveWithWidth, int moveWithHeight)
     {
-        int count = 0;
-        Coordinates potencialPosition = {
-                this->m_actualPosition.width + moveWithWidth,
-                this->m_actualPosition.height + moveWithHeight
+        int freePositionCounter = 0;
+        Coordinates potentialPosition = {
+                m_currentPosition.width + moveWithWidth,
+                m_currentPosition.height + moveWithHeight
         };
 
-        if (this->neighbourExists(2, 1, potencialPosition))
+        if (this->neighbourExists(2, 1, potentialPosition))
         {
-            count++;
+            freePositionCounter++;
         }
-        if (this->neighbourExists(1, 2, potencialPosition))
+        if (this->neighbourExists(1, 2, potentialPosition))
         {
-            count++;
+            freePositionCounter++;
         }
-        if (this->neighbourExists(-2, 1, potencialPosition))
+        if (this->neighbourExists(-2, 1, potentialPosition))
         {
-            count++;
+            freePositionCounter++;
         }
-        if (this->neighbourExists(-1, 2, potencialPosition))
+        if (this->neighbourExists(-1, 2, potentialPosition))
         {
-            count++;
+            freePositionCounter++;
         }
-        if (this->neighbourExists(-2, -1, potencialPosition))
+        if (this->neighbourExists(-2, -1, potentialPosition))
         {
-            count++;
+            freePositionCounter++;
         }
-        if (this->neighbourExists(-1, -2, potencialPosition))
+        if (this->neighbourExists(-1, -2, potentialPosition))
         {
-            count++;
+            freePositionCounter++;
         }
-        if (this->neighbourExists(1, -2, potencialPosition))
+        if (this->neighbourExists(1, -2, potentialPosition))
         {
-            count++;
+            freePositionCounter++;
         }
-        if (this->neighbourExists(2, -1, potencialPosition))
+        if (this->neighbourExists(2, -1, potentialPosition))
         {
-            count++;
+            freePositionCounter++;
         }
-        return count;
+        return freePositionCounter;
     }
 
     bool Chessboard::isEmpty(int newWidth, int newHeight)
     {
-        return this->m_board.at(newHeight).at(newWidth) == 0;
+        return m_board.at(newHeight).at(newWidth) == 0;
     }
 
-    bool Chessboard::isPotencialPositionNegative(int moveWithWidth, int moveWithHeight)
+    bool Chessboard::isPotentialPositionNegative(int moveWithWidth, int moveWithHeight)
     {
-        return (this->m_actualPosition.width + moveWithWidth) < 0 ||
-               (this->m_actualPosition.height + moveWithHeight) < 0;
+        return (m_currentPosition.width + moveWithWidth) < 0 ||
+               (m_currentPosition.height + moveWithHeight) < 0;
     }
 
     bool Chessboard::isPotencialPositionGreaterThanSize(int moveWithWidth, int moveWithHeight)
     {
-        return (this->m_actualPosition.width + moveWithWidth) >= this->getWidth() ||
-               (this->m_actualPosition.height + moveWithHeight) >= this->getHeight();
+        return (this->m_currentPosition.width + moveWithWidth) >= this->getWidth() ||
+               (this->m_currentPosition.height + moveWithHeight) >= this->getHeight();
     }
 
     bool Chessboard::positionExists(int moveWithWidth, int moveWithHeight)
     {
-        if (this->isPotencialPositionNegative(moveWithWidth, moveWithHeight))
+        if (this->isPotentialPositionNegative(moveWithWidth, moveWithHeight))
         {
             return false;
         }
@@ -289,77 +287,51 @@ namespace fatanyu
             return false;
         }
 
-        if (this->isEmpty(this->m_actualPosition.width + moveWithWidth, this->m_actualPosition.height + moveWithHeight))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return this->isEmpty(m_currentPosition.width + moveWithWidth, m_currentPosition.height + moveWithHeight);
     }
 
-    bool Chessboard::isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition)
+    bool Chessboard::isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition)
     {
-        return (potencialPosition.width + moveWithWidth) < 0 || (potencialPosition.height + moveWithHeight) < 0;
+        return (potentialPosition.width + moveWithWidth) < 0 || (potentialPosition.height + moveWithHeight) < 0;
     }
 
     bool
-    Chessboard::isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition)
+    Chessboard::isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition)
     {
-        return potencialPosition.width + moveWithWidth >= this->getWidth() ||
-               potencialPosition.height + moveWithHeight >= this->getHeight();
+        return potentialPosition.width + moveWithWidth >= this->getWidth() ||
+               potentialPosition.height + moveWithHeight >= this->getHeight();
     }
 
-    bool Chessboard::neighbourExists(int moveWithWidth, int moveWithHeight, Coordinates potencialPosition)
+    bool Chessboard::neighbourExists(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition)
     {
-        if (this->isNeighbourPositionNegative(moveWithWidth, moveWithHeight, potencialPosition))
+        if (this->isNeighbourPositionNegative(moveWithWidth, moveWithHeight, potentialPosition))
         {
             return false;
         }
-        if (this->isNeighbourPositionGreaterThanSize(moveWithWidth, moveWithHeight, potencialPosition))
+        if (this->isNeighbourPositionGreaterThanSize(moveWithWidth, moveWithHeight, potentialPosition))
         {
             return false;
         }
 
-        if (this->isEmpty(potencialPosition.width + moveWithWidth, potencialPosition.height + moveWithHeight))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return this->isEmpty(potentialPosition.width + moveWithWidth, potentialPosition.height + moveWithHeight);
     }
 
     bool Chessboard::setPosition(Coordinates newPosition)
     {
-        //if(newPosition.height < this->getHeight() && newPosition.width < this->getWidth())
-        //{
-        this->m_actualPosition.width = newPosition.width;
-        this->m_actualPosition.height = newPosition.height;
-        this->m_board.at(this->m_actualPosition.height).at(this->m_actualPosition.width) = this->m_round++;
+        this->m_currentPosition.width = newPosition.width;
+        this->m_currentPosition.height = newPosition.height;
+        this->m_board.at(this->m_currentPosition.height).at(this->m_currentPosition.width) = this->m_round++;
         return true;
-        //}
-        //else
-        //	return false;
     }
 
     bool Chessboard::warnsdorff()
     {
-        //this->printBoard();
-        //std::cout << "Width" << getWidth() << std::endl;
-        //std::cout << "Height" << getHeight() << std::endl;
-        //	std::cout << std::endl;
         while (this->m_round <= (this->getHeight() * this->getWidth()))
         {
-            //  std::cout << m_round++ << std::endl;
             if (!this->move())
             {
                 return false;
             }
-            //	break;
-            //	this->printBoard();
         }
 
         this->printBoard();

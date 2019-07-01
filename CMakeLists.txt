@@ -16,4 +16,4 @@ add_executable(knight-s-tour
         sources/chessboards/Chessboard.cpp
         sources/chessboards/BoardSize.cpp
         sources/game/Game.cpp
-        sources/main.cpp sources/chessboards/IChessboard.hpp)
+        sources/main.cpp sources/chessboards/IChessboard.hpp sources/algorithms/IKnightsTourAlgorithm.hpp sources/algorithms/WarnsdorffAlgorithm.cpp sources/algorithms/WarnsdorffAlgorithm.hpp)

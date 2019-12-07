@@ -7,68 +7,68 @@ namespace fatanyu
      */
     BoardSize::BoardSize()
     {
-        m_height = 0;
+        m_column = 0;
         m_width = 0;
     }
 
     /**
      * Validate instance values
-     * Size without solutions (remember, this is true for width x height and height x width):
+     * Size without solutions (remember, this is true for row x column and column x row):
      * - 0x0, 1x1, 1x0, 2x1, 2x2
      * @return True when solution exists
      */
     bool BoardSize::hasHeightOrWidthSmallerThanThree() const
     {
-        return m_height < 3 || m_width < 3;
+        return m_column < 3 || m_width < 3;
     }
 
     /**
      * Validate instance values
-     * Size without solutions (remember, this is true for width x height and height x width):
+     * Size without solutions (remember, this is true for row x column and column x row):
      * - 3x1, 3x2, 3x3, 3x5, 3x6
      * @return True when solution exists
      */
     bool BoardSize::hasHeightThreeAndHaveZeroSolutions() const
     {
-        return m_height == 3 && (m_width == 1 || m_width == 2 || m_width == 3 || m_width == 5 || m_width == 6);
+        return m_column == 3 && (m_width == 1 || m_width == 2 || m_width == 3 || m_width == 5 || m_width == 6);
     }
 
     /**
      * Validate instance values
-     * Size without solutions (remember, this is true for width x height and height x width):
+     * Size without solutions (remember, this is true for row x column and column x row):
      * - 3x1, 3x2, 3x3, 3x5, 3x6
      * @return True when solution exists
      */
     bool BoardSize::hasWidthThreeAndHaveZeroSolutions() const
     {
-        return m_width == 3 && (m_height == 1 || m_height == 2 || m_height == 3 || m_height == 5 || m_height == 6);
+        return m_width == 3 && (m_column == 1 || m_column == 2 || m_column == 3 || m_column == 5 || m_column == 6);
     }
 
     /**
      * Validate instance values
-     * Size without solutions (remember, this is true for width x height and height x width):
+     * Size without solutions (remember, this is true for row x column and column x row):
      * - 4x1, 4x2, 4x4
      * @return True when solution exists
      */
     bool BoardSize::hasHeightFourAndHaveZeroSolutions() const
     {
-        return m_height == 4 && (m_width == 1 || m_width == 2 || m_width == 4);
+        return m_column == 4 && (m_width == 1 || m_width == 2 || m_width == 4);
     }
 
     /**
      * Validate instance values
-     * Size without solutions (remember, this is true for width x height and height x width):
+     * Size without solutions (remember, this is true for row x column and column x row):
      * - 4x1, 4x2, 4x4
      * @return True when solution exists
      */
     bool BoardSize::hasWidthFourAndHaveZeroSolutions() const
     {
-        return m_width == 4 && (m_height == 1 || m_height == 2 || m_height == 4);
+        return m_width == 4 && (m_column == 1 || m_column == 2 || m_column == 4);
     }
 
     /**
      * Validate instance values by all means
-     * Size without solutions (remember, this is true for width x height and height x width):
+     * Size without solutions (remember, this is true for row x column and column x row):
      *   - 0x0, 1x1, 1x0, 2x1, 2x2
      *   - 3x1, 3x2, 3x3, 3x5, 3x6
      *   - 4x1, 4x2, 4x4
@@ -76,33 +76,11 @@ namespace fatanyu
      */
     bool BoardSize::hasValidSize() const
     {
-        // 0x0, 1x1, 1x0, 2x1, 2x2 and all minus values
-        if (this->hasHeightOrWidthSmallerThanThree())
-        {
-            return false;
-        }
-
-        // 3x1, 3x2, 3x3, 3x5, 3x6
-        if (this->hasHeightThreeAndHaveZeroSolutions())
-        {
-            return false;
-        }
-
-        // 1x3, 2x3, 3x3, 5x3, 6x3
-        if (this->hasWidthThreeAndHaveZeroSolutions())
-        {
-            return false;
-        }
-
-        // 4x1, 4x2, 4x4
-        if (this->hasHeightFourAndHaveZeroSolutions())
-        {
-            return false;
-        }
-
-        // 1x4, 2x4, 4x4
-        return !this->hasWidthFourAndHaveZeroSolutions();
-
+        return !(hasHeightOrWidthSmallerThanThree() ||
+                hasHeightThreeAndHaveZeroSolutions() ||
+                hasWidthThreeAndHaveZeroSolutions() ||
+                hasHeightFourAndHaveZeroSolutions() ||
+                hasWidthFourAndHaveZeroSolutions());
     }
 
     /**
@@ -122,17 +100,17 @@ namespace fatanyu
     void BoardSize::setHeight()
     {
         std::cout << "Height:";
-        std::cin >> m_height;
+        std::cin >> m_column;
     }
 
     /**
      * Print board size to std::cout
      */
-    void BoardSize::printSize() const
+    void BoardSize::print() const
     {
         std::cout << TextConstants::dashLine << std::endl;
         std::cout << "Width set to:  " << m_width << std::endl;
-        std::cout << "Height set to: " << m_height << std::endl;
+        std::cout << "Height set to: " << m_column << std::endl;
         std::cout << TextConstants::dashLine << std::endl;
     }
 
@@ -140,17 +118,17 @@ namespace fatanyu
      * Simple getter
      * @return current m_width value
      */
-    int BoardSize::getWidth() const
+    int BoardSize::width() const
     {
         return m_width;
     }
 
     /**
      * Simple getter
-     * @return current m_height value
+     * @return current m_column value
      */
-    int BoardSize::getHeight() const
+    int BoardSize::height() const
     {
-        return m_height;
+        return m_column;
     }
 }

@@ -26,7 +26,7 @@ namespace fatanyu
     {
         const BoardSize boardSize = Game::giveMeBoardSizes();
 
-        m_board = std::make_shared<Chessboard>(boardSize.getWidth(), boardSize.getHeight());
+        m_board = std::make_shared<Chessboard>(boardSize.width(), boardSize.height());
 
         // In case of fail, just reset and do it again
         // TODO random next step in case of multiple choices
@@ -42,7 +42,7 @@ namespace fatanyu
         BoardSize boardSize;
         boardSize.setWidth();
         boardSize.setHeight();
-        boardSize.printSize();
+        boardSize.print();
         return boardSize;
     }
 }

@@ -1,14 +1,34 @@
 #pragma once
 
+#include "Coordinates.hpp"
+
+#include <set>
+
 namespace fatanyu
 {
+    /**
+     *
+     */
     class IChessboard
     {
     public:
         /**
-         * @brief Print chessboard with path to terminal
+         *
+         * @param coordinates
+         * @return
          */
-        virtual void printBoard() = 0;
+        virtual bool placeFigure(const Coordinates &coordinates) = 0;
+        /**
+         *
+         * @param coordinates
+         * @return
+         */
+        virtual bool removeFigure(const Coordinates &coordinates) = 0;
+        virtual std::set<Coordinates> neighbours(const Coordinates &coordinates) = 0;
+        /**
+         * @brief Print chessboard to terminal
+         */
+        virtual void print() = 0;
 
         /**
          * @brief Reset chessboard (sizes remain)

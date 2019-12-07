@@ -21,5 +21,5 @@ One of the solutions. Basically, every time you are moving to square, which has 
 6. Repeat 3-5 until way is found or neighbours do not exists.
 
 Solution exists when:
-* moves counter value == (chessboard width * chessboard height)
+* moves counter value == (chessboard row * chessboard column)
 * Every position on chessboard has its value (move number) which is greater then zero and maximum value is equal to moves counter

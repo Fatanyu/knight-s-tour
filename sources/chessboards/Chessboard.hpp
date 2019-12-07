@@ -9,18 +9,8 @@
 
 namespace fatanyu
 {
-
     /**
-     * Classic chessboard notation (A-H and 1-8) can not be used, so there are numbers instead of alphabet
-     */
-    struct Coordinates
-    {
-        int width;
-        int height;
-    };
-
-    /**
-     * Represents chessboard. It has no height/width validation => validation is via BoardSize::hasValidSize()
+     * Represents chessboard. It has no column/row validation => validation is via BoardSize::hasValidSize()
      */
     class Chessboard : public IChessboard
     {
@@ -28,8 +18,8 @@ namespace fatanyu
 
         /**
          * Basic constructor
-         * @param sizeWidth Size of chessboard's width defined as integer (originally letters)
-         * @param sizeHeight Size of chessboard's height defined as integer (originally numbers)
+         * @param sizeWidth Size of chessboard's row defined as integer (originally letters)
+         * @param sizeHeight Size of chessboard's column defined as integer (originally numbers)
          */
         Chessboard(int sizeWidth, int sizeHeight);
 
@@ -43,7 +33,7 @@ namespace fatanyu
          * Print chessboard with path to terminal
          * TODO - fix spacing dynamically
          */
-        void printBoard() override;
+        void print() override;
 
         /**
          * Find path by warnsdorff algorithms
@@ -67,7 +57,7 @@ namespace fatanyu
         Coordinates m_currentPosition;
 
         /**
-         * This number represents moves count. Value can not be higher than chessboard.width * chessboard.height, exact match means solution.
+         * This number represents moves count. Value can not be higher than chessboard.row * chessboard.column, exact match means solution.
          */
         int m_round;
 
@@ -81,14 +71,14 @@ namespace fatanyu
         /**
          * Chessboard initialization. Create matrix and sets every position to zero
          * TODO checks
-         * @param sizeWidth New Chessboard width
-         * @param sizeHeight New Cheesboard height
+         * @param sizeWidth New Chessboard row
+         * @param sizeHeight New Cheesboard column
          */
         void initBoard(int sizeWidth, int sizeHeight);
 
         /**
          * Simple getter
-         * @return Width size of the board. Returns zero when width is zero
+         * @return Width size of the board. Returns zero when row is zero
          */
         int getWidth();
 
@@ -111,8 +101,8 @@ namespace fatanyu
 
         /**
          * Checks if potencial position on chessboard is empty (is zero)
-         * @param moveWithWidth Number which will be added to current position width
-         * @param moveWithHeight Number which will be added to current position height
+         * @param moveWithWidth Number which will be added to current position row
+         * @param moveWithHeight Number which will be added to current position column
          */
         bool isEmpty(int newWidth, int newHeight);
 
@@ -137,16 +127,16 @@ namespace fatanyu
 
         /**
          * Count neighbours for potencial location
-         * @param moveWithWidth Number which will be added to current position width
-         * @param moveWithHeight Number which will be added to current position height
+         * @param moveWithWidth Number which will be added to current position row
+         * @param moveWithHeight Number which will be added to current position column
          * @return Final count of neighbours. Range of values is <0-8>
          */
         int countNeighbours(int moveWithWidth, int moveWithHeight);
 
         /**
          * Check if potencial position has neighbour
-         * @param moveWithWidth Number which will be added to potencial position width
-         * @param moveWithHeight Number which will be added to potencial position height
+         * @param moveWithWidth Number which will be added to potencial position row
+         * @param moveWithHeight Number which will be added to potencial position column
          * @return True when potencial position has neighbour
          */
         bool neighbourExists(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition);
@@ -159,33 +149,33 @@ namespace fatanyu
 
         /**
          * Check if new position is within chessboard range
-         * @param moveWithWidth Number which will be added to current position width
-         * @param moveWithHeight Number which will be added to current position height
-         * @return True when new width or new height is negative
+         * @param moveWithWidth Number which will be added to current position row
+         * @param moveWithHeight Number which will be added to current position column
+         * @return True when new row or new column is negative
          */
         bool isPotentialPositionNegative(int moveWithWidth, int moveWithHeight);
 
         /**
          * Check if new position is within chessboard range
-         * @param moveWithWidth Number which will be added to current position width
-         * @param moveWithHeight Number which will be added to current position height
-         * @return True when new width or new height is greater then max sizes of chessboard
+         * @param moveWithWidth Number which will be added to current position row
+         * @param moveWithHeight Number which will be added to current position column
+         * @return True when new row or new column is greater then max sizes of chessboard
          */
         bool isPotencialPositionGreaterThanSize(int moveWithWidth, int moveWithHeight);
 
         /**
          * Check if new neighbour position is within chessboard range
-         * @param moveWithWidth Number which will be added to potencial position width
-         * @param moveWithHeight Number which will be added to potencial position height
-         * @return True when new width or new height is negative
+         * @param moveWithWidth Number which will be added to potencial position row
+         * @param moveWithHeight Number which will be added to potencial position column
+         * @return True when new row or new column is negative
          */
         bool isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition);
 
         /**
          * Check if new neighbour position is within chessboard range
-         * @param moveWithWidth Number which will be added to potencial position width
-         * @param moveWithHeight Number which will be added to potencial position height
-         * @return True when new width or new height is greater then max sizes of chessboard
+         * @param moveWithWidth Number which will be added to potencial position row
+         * @param moveWithHeight Number which will be added to potencial position column
+         * @return True when new row or new column is greater then max sizes of chessboard
          */
         bool isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition);
     };

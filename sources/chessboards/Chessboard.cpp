@@ -14,7 +14,7 @@ namespace fatanyu
     {
         m_round = 1;
         this->initRand();
-        this->initBoard(boardSize.getWidth(), boardSize.getHeight());
+        this->initBoard(boardSize.width(), boardSize.height());
         this->initPosition();
     }
 
@@ -38,7 +38,7 @@ namespace fatanyu
     {
         //Coordinates position = {2,2};
         Coordinates position = {rand() % (this->getWidth() - 1), rand() % (this->getHeight() - 1)};
-//	std::cout << "Position set to: " << position.width << "," << position.height << std::endl;
+//	std::cout << "Position set to: " << position.row << "," << position.column << std::endl;
         this->setPosition(position);
     }
 
@@ -55,7 +55,7 @@ namespace fatanyu
         }
     }
 
-    void Chessboard::printBoard()
+    void Chessboard::print()
     {
         for (auto &row : this->m_board)
         {
@@ -212,7 +212,7 @@ namespace fatanyu
 
         }
         this->setPosition(newPosition);
-        //printBoard();
+        //print();
         return true;
     }
 
@@ -334,7 +334,7 @@ namespace fatanyu
             }
         }
 
-        this->printBoard();
+        this->print();
         return true;
     }
 

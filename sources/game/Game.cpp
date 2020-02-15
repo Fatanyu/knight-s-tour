@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-namespace fatanyu
+namespace kaktus
 {
     Game::Game()
     {

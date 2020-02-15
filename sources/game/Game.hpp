@@ -4,7 +4,7 @@
 #include <memory>
 #include <iostream>
 
-namespace fatanyu
+namespace kaktus
 {
     class Game
     {

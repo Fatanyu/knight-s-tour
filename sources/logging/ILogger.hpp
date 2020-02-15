@@ -1,7 +1,7 @@
 #pragma once
 #include <experimental/source_location>
 
-namespace fatanyu
+namespace kaktus
 {
     class ILogger
     {

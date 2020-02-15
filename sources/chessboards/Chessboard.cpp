@@ -1,6 +1,6 @@
 #include "Chessboard.hpp"
 
-namespace fatanyu
+namespace kaktus
 {
     Chessboard::Chessboard(int sizeWidth, int sizeHeight)
     {

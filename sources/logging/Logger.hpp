@@ -6,7 +6,7 @@
 #include <iostream>
 #include <mutex>
 
-namespace fatanyu
+namespace kaktus
 {
     class Logger : public ILogger
     {
@@ -58,7 +58,7 @@ namespace fatanyu
             {
                 if (!m_ostream)
                 {
-                    throw fatanyu::Exception("Logger init failed. Stream is nullptr.");
+                    throw kaktus::Exception("Logger init failed. Stream is nullptr.");
                 }
             }
 

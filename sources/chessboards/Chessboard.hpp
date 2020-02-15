@@ -7,7 +7,7 @@
 #include <iostream>
 #include <cstdlib>
 
-namespace fatanyu
+namespace kaktus
 {
 
     /**

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace fatanyu
+namespace kaktus
 {
     class IChessboard
     {

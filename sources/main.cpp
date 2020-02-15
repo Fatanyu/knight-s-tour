@@ -6,10 +6,10 @@ int main()
 
     try
     {
-        fatanyu::Logger logger;
+        kaktus::Logger logger;
         try
         {
-            fatanyu::Game newGame;
+            kaktus::Game newGame;
             newGame.startGame();
         }
         catch (std::exception &exception)

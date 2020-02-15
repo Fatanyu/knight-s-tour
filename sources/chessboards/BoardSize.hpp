@@ -3,7 +3,7 @@
 #include <iostream>
 #include "constants/TextConstants.hpp"
 
-namespace fatanyu
+namespace kaktus
 {
     /**
      * Contains board sizes

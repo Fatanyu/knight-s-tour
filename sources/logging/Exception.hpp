@@ -5,7 +5,7 @@
 #include <experimental/source_location>
 #include <sstream>
 
-namespace fatanyu
+namespace kaktus
 {
     class Exception : public std::exception
     {

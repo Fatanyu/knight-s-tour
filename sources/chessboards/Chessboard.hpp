@@ -9,16 +9,6 @@
 
 namespace kaktus
 {
-
-    /**
-     * Classic chessboard notation (A-H and 1-8) can not be used, so there are numbers instead of alphabet
-     */
-    struct Coordinates
-    {
-        int column;
-        int row;
-    };
-
     /**
      * Represents chessboard. It has no row/column validation => validation is via BoardSize::hasValidSize()
      */
@@ -31,13 +21,25 @@ namespace kaktus
          * @param sizeColumn Size of chessboard's column defined as integer (originally letters)
          * @param sizeRow Size of chessboard's row defined as integer (originally numbers)
          */
-        Chessboard(int sizeColumn, int sizeRow);
+        Chessboard(int columns, int rows) : m_currentPosition({})
+        {
+            m_round = 1;
+            initRand();
+            initBoard(columns, rows);
+            initPosition();
+        }
 
         /**
          * Basic constructor
          * @param boardSize Class containing board sizes
          */
-        Chessboard(BoardSize boardSize);
+        explicit Chessboard(BoardSize boardSize) : m_currentPosition({})
+        {
+            m_round = 1;
+            initRand();
+            initBoard(boardSize.getColumn(), boardSize.getRow());
+            initPosition();
+        }
 
         /**
          * Print chessboard with path to terminal
@@ -49,12 +51,51 @@ namespace kaktus
          * Find path by warnsdorff algorithms
          * @return True when path has been found
          */
-        bool warnsdorff();
+        bool run() override;
 
         /**
          * Reset chessboard (sizes remain)
          */
         void reset() override;
+
+        /**
+         * Simple getter
+         * @return Column size of the board. Returns zero when column is zero
+         */
+        int maxColumn() override;
+
+        /**
+         * Simple getter
+         * @return Row size of the chessboard
+         */
+        int maxRow() override;
+
+        /**
+         * Check if position is inside chessboard
+         * @return True when position is inside chessboard
+         */
+        bool positionExists(int moveWithColumn, int moveWithRow) override;
+
+        /**
+         * Count neighbours for potencial location
+         * @param moveWithColumn Number which will be added to current position column
+         * @param moveWithRow Number which will be added to current position row
+         * @return Final count of neighbours. Range of values is <0-8>
+         */
+        int countNeighbours(int moveWithColumn, int moveWithRow) override;
+
+        Coordinates currentPosition() override
+        {
+            return m_currentPosition;
+        }
+
+        /**
+         * Set new Knight's position
+         * @param newPosition New Knight's position
+         * @return True on successful move
+         */
+        bool setPosition(Coordinates newPosition) override;
+
     protected:
         /**
          * 2D matrix as chessboard
@@ -72,13 +113,6 @@ namespace kaktus
         int m_round;
 
         /**
-         * Set new Knight's position
-         * @param newPosition New Knight's position
-         * @return True on successful move
-         */
-        bool setPosition(Coordinates newPosition);
-
-        /**
          * Chessboard initialization. Create matrix and sets every position to zero
          * TODO checks
          * @param sizeColumn New Chessboard column
@@ -87,27 +121,9 @@ namespace kaktus
         void initBoard(int sizeColumn, int sizeRow);
 
         /**
-         * Simple getter
-         * @return Column size of the board. Returns zero when column is zero
-         */
-        int getColumn();
-
-        /**
-         * Simple getter
-         * @return Row size of the chessboard
-         */
-        int getRow();
-
-        /**
          * Sets random location of the Knight
          */
         void initPosition();
-
-        /**
-         * Check if position is inside chessboard
-         * @return True when position is inside chessboard
-         */
-        bool positionExists(int moveWithColumn, int moveWithRow);
 
         /**
          * Checks if potencial position on chessboard is empty (is zero)
@@ -133,15 +149,10 @@ namespace kaktus
         /**
          * Reset number generator
          */
-        void initRand();
-
-        /**
-         * Count neighbours for potencial location
-         * @param moveWithColumn Number which will be added to current position column
-         * @param moveWithRow Number which will be added to current position row
-         * @return Final count of neighbours. Range of values is <0-8>
-         */
-        int countNeighbours(int moveWithColumn, int moveWithRow);
+        static void initRand()
+        {
+            srand(time(nullptr));
+        }
 
         /**
          * Check if potencial position has neighbour
@@ -179,7 +190,7 @@ namespace kaktus
          * @param moveWithRow Number which will be added to potencial position row
          * @return True when new column or new row is negative
          */
-        bool isNeighbourPositionNegative(int moveWithColumn, int moveWithRow, Coordinates potentialPosition);
+        static bool isNeighbourPositionNegative(int moveWithColumn, int moveWithRow, Coordinates potentialPosition);
 
         /**
          * Check if new neighbour position is within chessboard range

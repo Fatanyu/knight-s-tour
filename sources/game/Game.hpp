@@ -9,8 +9,9 @@ namespace kaktus
     class Game
     {
     public:
-        Game();
-        ~Game();
+        Game() = default;
+
+        ~Game() = default;
 
         /**
          *
@@ -18,7 +19,7 @@ namespace kaktus
         void startGame();
 
     protected:
-        std::shared_ptr<Chessboard> m_board; //TODO use IChessboard
+        std::unique_ptr<IChessboard> m_board; //TODO use IChessboard
 
         static BoardSize giveMeBoardSizes();
 

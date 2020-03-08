@@ -1,15 +1,8 @@
+#include <algorithms/WarnsdorffAlgorithm.hpp>
 #include "Game.hpp"
 
 namespace kaktus
 {
-    Game::Game()
-    {
-    }
-
-    Game::~Game()
-    {
-    }
-
     BoardSize Game::giveMeBoardSizes()
     {
         BoardSize boardSize;
@@ -26,14 +19,19 @@ namespace kaktus
     {
         const BoardSize boardSize = Game::giveMeBoardSizes();
 
-        m_board = std::make_shared<Chessboard>(boardSize.getColumn(), boardSize.getRow());
+        m_board = std::make_unique<Chessboard>(boardSize.getColumn(), boardSize.getRow());
 
         // In case of fail, just reset and do it again
         // TODO random next step in case of multiple choices
-        while (!m_board->warnsdorff())
+        while (!m_board->run())
         {
             m_board->reset();
         }
+//        kaktus::WarnsdorffAlgorithm warnsdorffAlgorithm(m_board);
+//        while (!warnsdorffAlgorithm.run())
+//        {
+//            warnsdorffAlgorithm.reset();
+//        }
 
     }
 

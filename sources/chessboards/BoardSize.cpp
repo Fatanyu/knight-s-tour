@@ -77,31 +77,31 @@ namespace kaktus
     bool BoardSize::hasValidSize() const
     {
         // 0x0, 1x1, 1x0, 2x1, 2x2 and all minus values
-        if (this->hasRowOrColumnSmallerThanThree())
+        if (hasRowOrColumnSmallerThanThree())
         {
             return false;
         }
 
         // 3x1, 3x2, 3x3, 3x5, 3x6
-        if (this->hasRowThreeAndHaveZeroSolutions())
+        if (hasRowThreeAndHaveZeroSolutions())
         {
             return false;
         }
 
         // 1x3, 2x3, 3x3, 5x3, 6x3
-        if (this->hasColumnThreeAndHaveZeroSolutions())
+        if (hasColumnThreeAndHaveZeroSolutions())
         {
             return false;
         }
 
         // 4x1, 4x2, 4x4
-        if (this->hasRowFourAndHaveZeroSolutions())
+        if (hasRowFourAndHaveZeroSolutions())
         {
             return false;
         }
 
         // 1x4, 2x4, 4x4
-        return !this->hasColumnFourAndHaveZeroSolutions();
+        return !hasColumnFourAndHaveZeroSolutions();
 
     }
 
@@ -112,7 +112,7 @@ namespace kaktus
     void BoardSize::setColumn()
     {
         std::cout << "Columns:";
-        std::cin >> this->m_column;
+        std::cin >> m_column;
     }
 
     /**

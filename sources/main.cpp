@@ -4,8 +4,8 @@ int main()
 {
     try
     {
-            kaktus::Game newGame;
-            newGame.startGame();
+        kaktus::Game newGame;
+        newGame.startGame();
     }
     catch (std::exception &exception)
     {

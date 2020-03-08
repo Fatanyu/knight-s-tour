@@ -1,74 +1,74 @@
 #include "BoardSize.hpp"
 
-namespace fatanyu
+namespace kaktus
 {
     /**
      * Standard constructor. It inits values to zeros
      */
     BoardSize::BoardSize()
     {
-        m_height = 0;
-        m_width = 0;
+        m_row = 0;
+        m_column = 0;
     }
 
     /**
      * Validate instance values
-     * Size without solutions (remember, this is true for width x height and height x width):
+     * Size without solutions (remember, this is true for column x row and row x column):
      * - 0x0, 1x1, 1x0, 2x1, 2x2
      * @return True when solution exists
      */
-    bool BoardSize::hasHeightOrWidthSmallerThanThree() const
+    bool BoardSize::hasRowOrColumnSmallerThanThree() const
     {
-        return m_height < 3 || m_width < 3;
+        return m_row < 3 || m_column < 3;
     }
 
     /**
      * Validate instance values
-     * Size without solutions (remember, this is true for width x height and height x width):
+     * Size without solutions (remember, this is true for column x row and row x column):
      * - 3x1, 3x2, 3x3, 3x5, 3x6
      * @return True when solution exists
      */
-    bool BoardSize::hasHeightThreeAndHaveZeroSolutions() const
+    bool BoardSize::hasRowThreeAndHaveZeroSolutions() const
     {
-        return m_height == 3 && (m_width == 1 || m_width == 2 || m_width == 3 || m_width == 5 || m_width == 6);
+        return m_row == 3 && (m_column == 1 || m_column == 2 || m_column == 3 || m_column == 5 || m_column == 6);
     }
 
     /**
      * Validate instance values
-     * Size without solutions (remember, this is true for width x height and height x width):
+     * Size without solutions (remember, this is true for column x row and row x column):
      * - 3x1, 3x2, 3x3, 3x5, 3x6
      * @return True when solution exists
      */
-    bool BoardSize::hasWidthThreeAndHaveZeroSolutions() const
+    bool BoardSize::hasColumnThreeAndHaveZeroSolutions() const
     {
-        return m_width == 3 && (m_height == 1 || m_height == 2 || m_height == 3 || m_height == 5 || m_height == 6);
+        return m_column == 3 && (m_row == 1 || m_row == 2 || m_row == 3 || m_row == 5 || m_row == 6);
     }
 
     /**
      * Validate instance values
-     * Size without solutions (remember, this is true for width x height and height x width):
+     * Size without solutions (remember, this is true for column x row and row x column):
      * - 4x1, 4x2, 4x4
      * @return True when solution exists
      */
-    bool BoardSize::hasHeightFourAndHaveZeroSolutions() const
+    bool BoardSize::hasRowFourAndHaveZeroSolutions() const
     {
-        return m_height == 4 && (m_width == 1 || m_width == 2 || m_width == 4);
+        return m_row == 4 && (m_column == 1 || m_column == 2 || m_column == 4);
     }
 
     /**
      * Validate instance values
-     * Size without solutions (remember, this is true for width x height and height x width):
+     * Size without solutions (remember, this is true for column x row and row x column):
      * - 4x1, 4x2, 4x4
      * @return True when solution exists
      */
-    bool BoardSize::hasWidthFourAndHaveZeroSolutions() const
+    bool BoardSize::hasColumnFourAndHaveZeroSolutions() const
     {
-        return m_width == 4 && (m_height == 1 || m_height == 2 || m_height == 4);
+        return m_column == 4 && (m_row == 1 || m_row == 2 || m_row == 4);
     }
 
     /**
      * Validate instance values by all means
-     * Size without solutions (remember, this is true for width x height and height x width):
+     * Size without solutions (remember, this is true for column x row and row x column):
      *   - 0x0, 1x1, 1x0, 2x1, 2x2
      *   - 3x1, 3x2, 3x3, 3x5, 3x6
      *   - 4x1, 4x2, 4x4
@@ -77,31 +77,31 @@ namespace fatanyu
     bool BoardSize::hasValidSize() const
     {
         // 0x0, 1x1, 1x0, 2x1, 2x2 and all minus values
-        if (this->hasHeightOrWidthSmallerThanThree())
+        if (this->hasRowOrColumnSmallerThanThree())
         {
             return false;
         }
 
         // 3x1, 3x2, 3x3, 3x5, 3x6
-        if (this->hasHeightThreeAndHaveZeroSolutions())
+        if (this->hasRowThreeAndHaveZeroSolutions())
         {
             return false;
         }
 
         // 1x3, 2x3, 3x3, 5x3, 6x3
-        if (this->hasWidthThreeAndHaveZeroSolutions())
+        if (this->hasColumnThreeAndHaveZeroSolutions())
         {
             return false;
         }
 
         // 4x1, 4x2, 4x4
-        if (this->hasHeightFourAndHaveZeroSolutions())
+        if (this->hasRowFourAndHaveZeroSolutions())
         {
             return false;
         }
 
         // 1x4, 2x4, 4x4
-        return !this->hasWidthFourAndHaveZeroSolutions();
+        return !this->hasColumnFourAndHaveZeroSolutions();
 
     }
 
@@ -109,20 +109,20 @@ namespace fatanyu
      * Simple setter
      * Gets value from user
      */
-    void BoardSize::setWidth()
+    void BoardSize::setColumn()
     {
-        std::cout << "Width:";
-        std::cin >> this->m_width;
+        std::cout << "Columns:";
+        std::cin >> this->m_column;
     }
 
     /**
      * Simple setter
      * Gets value from user
      */
-    void BoardSize::setHeight()
+    void BoardSize::setRow()
     {
-        std::cout << "Height:";
-        std::cin >> m_height;
+        std::cout << "Rows:";
+        std::cin >> m_row;
     }
 
     /**
@@ -131,26 +131,26 @@ namespace fatanyu
     void BoardSize::printSize() const
     {
         std::cout << TextConstants::dashLine << std::endl;
-        std::cout << "Width set to:  " << m_width << std::endl;
-        std::cout << "Height set to: " << m_height << std::endl;
+        std::cout << "Column set to:  " << m_column << std::endl;
+        std::cout << "Row set to: " << m_row << std::endl;
         std::cout << TextConstants::dashLine << std::endl;
     }
 
     /**
      * Simple getter
-     * @return current m_width value
+     * @return current m_column value
      */
-    int BoardSize::getWidth() const
+    int BoardSize::getColumn() const
     {
-        return m_width;
+        return m_column;
     }
 
     /**
      * Simple getter
-     * @return current m_height value
+     * @return current m_row value
      */
-    int BoardSize::getHeight() const
+    int BoardSize::getRow() const
     {
-        return m_height;
+        return m_row;
     }
 }

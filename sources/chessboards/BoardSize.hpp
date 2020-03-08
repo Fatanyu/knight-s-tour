@@ -18,7 +18,7 @@ namespace kaktus
 
         /**
          * Check given values
-         * Size without solutions (remember, this is true for width x height and height x width):
+         * Size without solutions (remember, this is true for column x row and row x column):
          *   - 0x0, 1x1, 1x0, 2x1, 2x2
          *   - 3x1, 3x2, 3x3, 3x5, 3x6
          *   - 4x1, 4x2, 4x4
@@ -30,13 +30,13 @@ namespace kaktus
          * Simple setter
          * Gets value from user
          */
-        void setWidth();
+        void setColumn();
 
         /**
          * Simple setter
          * Gets value from user
          */
-        void setHeight();
+        void setRow();
 
         /**
          * Print board size to std::cout
@@ -45,66 +45,66 @@ namespace kaktus
 
         /**
          * Simple getter
-         * @return current m_width value
+         * @return current m_column value
          */
-        int getWidth() const;
+        int getColumn() const;
 
         /**
          * Simple getter
-          * @return current m_height value
+          * @return current m_row value
          */
-        int getHeight() const;
+        int getRow() const;
 
     protected:
         /**
-         * Board height - it can be used to init chessboard height
+         * Board row - it can be used to init chessboard row
          * Do not use unsigned type!
          */
-        int m_height;
+        int m_row;
         /**
-         * Board height - it can be used to init chessboard height
+         * Board row - it can be used to init chessboard row
          * Do not use unsigned type!
          */
-        int m_width;
+        int m_column;
 
         /**
          * Validate instance values
-         * Size without solutions (remember, this is true for width x height and height x width):
+         * Size without solutions (remember, this is true for column x row and row x column):
          * - 0x0, 1x1, 1x0, 2x1, 2x2
          * @return True when solution exists
          */
-        bool hasHeightOrWidthSmallerThanThree() const;
+        bool hasRowOrColumnSmallerThanThree() const;
 
         /**
          * Validate instance values
-         * Size without solutions (remember, this is true for width x height and height x width):
+         * Size without solutions (remember, this is true for column x row and row x column):
          * - 3x1, 3x2, 3x3, 3x5, 3x6
          * @return True when solution exists
          */
-        bool hasHeightThreeAndHaveZeroSolutions() const;
+        bool hasRowThreeAndHaveZeroSolutions() const;
 
         /**
          * Validate instance values
-         * Size without solutions (remember, this is true for width x height and height x width):
+         * Size without solutions (remember, this is true for column x row and row x column):
          * - 3x1, 3x2, 3x3, 3x5, 3x6
          * @return True when solution exists
          */
-        bool hasWidthThreeAndHaveZeroSolutions() const;
+        bool hasColumnThreeAndHaveZeroSolutions() const;
 
         /**
          * Validate instance values
-         * Size without solutions (remember, this is true for width x height and height x width):
+         * Size without solutions (remember, this is true for column x row and row x column):
          * - 4x1, 4x2, 4x4
          * @return True when solution exists
          */
-        bool hasHeightFourAndHaveZeroSolutions() const;
+        bool hasRowFourAndHaveZeroSolutions() const;
 
         /**
          * Validate instance values
-         * Size without solutions (remember, this is true for width x height and height x width):
+         * Size without solutions (remember, this is true for column x row and row x column):
          * - 4x1, 4x2, 4x4
          * @return True when solution exists
          */
-        bool hasWidthFourAndHaveZeroSolutions() const;
+        bool hasColumnFourAndHaveZeroSolutions() const;
     };
 }

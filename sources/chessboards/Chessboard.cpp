@@ -2,11 +2,11 @@
 
 namespace kaktus
 {
-    Chessboard::Chessboard(int sizeWidth, int sizeHeight)
+    Chessboard::Chessboard(int sizeColumn, int sizeRow)
     {
         m_round = 1;
         this->initRand();
-        this->initBoard(sizeWidth, sizeHeight);
+        this->initBoard(sizeColumn, sizeRow);
         this->initPosition();
     }
 
@@ -14,17 +14,17 @@ namespace kaktus
     {
         m_round = 1;
         this->initRand();
-        this->initBoard(boardSize.getWidth(), boardSize.getHeight());
+        this->initBoard(boardSize.getColumn(), boardSize.getRow());
         this->initPosition();
     }
 
     void Chessboard::reset()
     {
         m_round = 1;
-        int width = this->getWidth();
-        int height = this->getHeight();
+        int column = this->getColumn();
+        int row = this->getRow();
         m_board.clear();
-        this->initBoard(width, height);
+        this->initBoard(column, row);
         this->initPosition();
     }
 
@@ -37,17 +37,17 @@ namespace kaktus
     void Chessboard::initPosition()
     {
         //Coordinates position = {2,2};
-        Coordinates position = {rand() % (this->getWidth() - 1), rand() % (this->getHeight() - 1)};
-//	std::cout << "Position set to: " << position.width << "," << position.height << std::endl;
+        Coordinates position = {rand() % (this->getColumn() - 1), rand() % (this->getRow() - 1)};
+//	std::cout << "Position set to: " << position.column << "," << position.row << std::endl;
         this->setPosition(position);
     }
 
-    void Chessboard::initBoard(int sizeWidth, int sizeHeight)
+    void Chessboard::initBoard(int sizeColumn, int sizeRow)
     {
-        for (int indexHeight = 0; indexHeight < sizeHeight; indexHeight++)
+        for (int indexRow = 0; indexRow < sizeRow; indexRow++)
         {
             std::vector<int> row;
-            for (int indexWidth = 0; indexWidth < sizeWidth; indexWidth++)
+            for (int indexColumn = 0; indexColumn < sizeColumn; indexColumn++)
             {
                 row.push_back(0);
             }
@@ -172,40 +172,40 @@ namespace kaktus
         }
         //std::cout << "2" << std::endl;
 
-        Coordinates newPosition{this->m_currentPosition.width, this->m_currentPosition.height};
+        Coordinates newPosition{this->m_currentPosition.column, this->m_currentPosition.row};
         switch (identifier)
         {
             case 1:
-                newPosition.width += 2;
-                newPosition.height += 1;
+                newPosition.column += 2;
+                newPosition.row += 1;
                 break;
             case 2:
-                newPosition.width += 1;
-                newPosition.height += 2;
+                newPosition.column += 1;
+                newPosition.row += 2;
                 break;
             case 3:
-                newPosition.width += -2;
-                newPosition.height += 1;
+                newPosition.column += -2;
+                newPosition.row += 1;
                 break;
             case 4:
-                newPosition.width += -1;
-                newPosition.height += 2;
+                newPosition.column += -1;
+                newPosition.row += 2;
                 break;
             case 5:
-                newPosition.width += -2;
-                newPosition.height += -1;
+                newPosition.column += -2;
+                newPosition.row += -1;
                 break;
             case 6:
-                newPosition.width += -1;
-                newPosition.height += -2;
+                newPosition.column += -1;
+                newPosition.row += -2;
                 break;
             case 7:
-                newPosition.width += 1;
-                newPosition.height += -2;
+                newPosition.column += 1;
+                newPosition.row += -2;
                 break;
             case 8:
-                newPosition.width += 2;
-                newPosition.height += -1;
+                newPosition.column += 2;
+                newPosition.row += -1;
                 break;
             default:
                 break; //TODO throw error
@@ -216,12 +216,12 @@ namespace kaktus
         return true;
     }
 
-    int Chessboard::countNeighbours(int moveWithWidth, int moveWithHeight)
+    int Chessboard::countNeighbours(int moveWithColumn, int moveWithRow)
     {
         int freePositionCounter = 0;
         Coordinates potentialPosition = {
-                m_currentPosition.width + moveWithWidth,
-                m_currentPosition.height + moveWithHeight
+                m_currentPosition.column + moveWithColumn,
+                m_currentPosition.row + moveWithRow
         };
 
         if (this->neighbourExists(2, 1, potentialPosition))
@@ -259,74 +259,74 @@ namespace kaktus
         return freePositionCounter;
     }
 
-    bool Chessboard::isEmpty(int newWidth, int newHeight)
+    bool Chessboard::isEmpty(int newColumn, int newRow)
     {
-        return m_board.at(newHeight).at(newWidth) == 0;
+        return m_board.at(newRow).at(newColumn) == 0;
     }
 
-    bool Chessboard::isPotentialPositionNegative(int moveWithWidth, int moveWithHeight)
+    bool Chessboard::isPotentialPositionNegative(int moveWithColumn, int moveWithRow)
     {
-        return (m_currentPosition.width + moveWithWidth) < 0 ||
-               (m_currentPosition.height + moveWithHeight) < 0;
+        return (m_currentPosition.column + moveWithColumn) < 0 ||
+               (m_currentPosition.row + moveWithRow) < 0;
     }
 
-    bool Chessboard::isPotencialPositionGreaterThanSize(int moveWithWidth, int moveWithHeight)
+    bool Chessboard::isPotencialPositionGreaterThanSize(int moveWithColumn, int moveWithRow)
     {
-        return (this->m_currentPosition.width + moveWithWidth) >= this->getWidth() ||
-               (this->m_currentPosition.height + moveWithHeight) >= this->getHeight();
+        return (this->m_currentPosition.column + moveWithColumn) >= this->getColumn() ||
+               (this->m_currentPosition.row + moveWithRow) >= this->getRow();
     }
 
-    bool Chessboard::positionExists(int moveWithWidth, int moveWithHeight)
+    bool Chessboard::positionExists(int moveWithColumn, int moveWithRow)
     {
-        if (this->isPotentialPositionNegative(moveWithWidth, moveWithHeight))
+        if (this->isPotentialPositionNegative(moveWithColumn, moveWithRow))
         {
             return false;
         }
-        if (this->isPotencialPositionGreaterThanSize(moveWithWidth, moveWithHeight))
+        if (this->isPotencialPositionGreaterThanSize(moveWithColumn, moveWithRow))
         {
             return false;
         }
 
-        return this->isEmpty(m_currentPosition.width + moveWithWidth, m_currentPosition.height + moveWithHeight);
+        return this->isEmpty(m_currentPosition.column + moveWithColumn, m_currentPosition.row + moveWithRow);
     }
 
-    bool Chessboard::isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition)
+    bool Chessboard::isNeighbourPositionNegative(int moveWithColumn, int moveWithRow, Coordinates potentialPosition)
     {
-        return (potentialPosition.width + moveWithWidth) < 0 || (potentialPosition.height + moveWithHeight) < 0;
+        return (potentialPosition.column + moveWithColumn) < 0 || (potentialPosition.row + moveWithRow) < 0;
     }
 
     bool
-    Chessboard::isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition)
+    Chessboard::isNeighbourPositionGreaterThanSize(int moveWithColumn, int moveWithRow, Coordinates potentialPosition)
     {
-        return potentialPosition.width + moveWithWidth >= this->getWidth() ||
-               potentialPosition.height + moveWithHeight >= this->getHeight();
+        return potentialPosition.column + moveWithColumn >= this->getColumn() ||
+               potentialPosition.row + moveWithRow >= this->getRow();
     }
 
-    bool Chessboard::neighbourExists(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition)
+    bool Chessboard::neighbourExists(int moveWithColumn, int moveWithRow, Coordinates potentialPosition)
     {
-        if (this->isNeighbourPositionNegative(moveWithWidth, moveWithHeight, potentialPosition))
+        if (this->isNeighbourPositionNegative(moveWithColumn, moveWithRow, potentialPosition))
         {
             return false;
         }
-        if (this->isNeighbourPositionGreaterThanSize(moveWithWidth, moveWithHeight, potentialPosition))
+        if (this->isNeighbourPositionGreaterThanSize(moveWithColumn, moveWithRow, potentialPosition))
         {
             return false;
         }
 
-        return this->isEmpty(potentialPosition.width + moveWithWidth, potentialPosition.height + moveWithHeight);
+        return this->isEmpty(potentialPosition.column + moveWithColumn, potentialPosition.row + moveWithRow);
     }
 
     bool Chessboard::setPosition(Coordinates newPosition)
     {
-        this->m_currentPosition.width = newPosition.width;
-        this->m_currentPosition.height = newPosition.height;
-        this->m_board.at(this->m_currentPosition.height).at(this->m_currentPosition.width) = this->m_round++;
+        this->m_currentPosition.column = newPosition.column;
+        this->m_currentPosition.row = newPosition.row;
+        this->m_board.at(this->m_currentPosition.row).at(this->m_currentPosition.column) = this->m_round++;
         return true;
     }
 
     bool Chessboard::warnsdorff()
     {
-        while (this->m_round <= (this->getHeight() * this->getWidth()))
+        while (this->m_round <= (this->getRow() * this->getColumn()))
         {
             if (!this->move())
             {
@@ -338,9 +338,9 @@ namespace kaktus
         return true;
     }
 
-    int Chessboard::getWidth()
+    int Chessboard::getColumn()
     {
-        if (this->getHeight() == 0)
+        if (this->getRow() == 0)
         {
             return 0;
         }
@@ -350,7 +350,7 @@ namespace kaktus
         }
     }
 
-    int Chessboard::getHeight()
+    int Chessboard::getRow()
     {
         return this->m_board.size();
     }

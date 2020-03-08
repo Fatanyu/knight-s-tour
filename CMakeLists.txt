@@ -15,4 +15,4 @@ add_executable(knight-s-tour
         sources/chessboards/Chessboard.cpp
         sources/chessboards/BoardSize.cpp
         sources/game/Game.cpp
-        sources/main.cpp sources/chessboards/IChessboard.hpp sources/logging/Logger.hpp sources/logging/ILogger.hpp sources/logging/Exception.hpp)
+        sources/main.cpp sources/chessboards/IChessboard.hpp sources/logging/Exception.hpp)

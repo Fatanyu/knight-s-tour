@@ -15,12 +15,12 @@ namespace kaktus
      */
     struct Coordinates
     {
-        int width;
-        int height;
+        int column;
+        int row;
     };
 
     /**
-     * Represents chessboard. It has no height/width validation => validation is via BoardSize::hasValidSize()
+     * Represents chessboard. It has no row/column validation => validation is via BoardSize::hasValidSize()
      */
     class Chessboard : public IChessboard
     {
@@ -28,10 +28,10 @@ namespace kaktus
 
         /**
          * Basic constructor
-         * @param sizeWidth Size of chessboard's width defined as integer (originally letters)
-         * @param sizeHeight Size of chessboard's height defined as integer (originally numbers)
+         * @param sizeColumn Size of chessboard's column defined as integer (originally letters)
+         * @param sizeRow Size of chessboard's row defined as integer (originally numbers)
          */
-        Chessboard(int sizeWidth, int sizeHeight);
+        Chessboard(int sizeColumn, int sizeRow);
 
         /**
          * Basic constructor
@@ -67,7 +67,7 @@ namespace kaktus
         Coordinates m_currentPosition;
 
         /**
-         * This number represents moves count. Value can not be higher than chessboard.width * chessboard.height, exact match means solution.
+         * This number represents moves count. Value can not be higher than chessboard.column * chessboard.row, exact match means solution.
          */
         int m_round;
 
@@ -81,22 +81,22 @@ namespace kaktus
         /**
          * Chessboard initialization. Create matrix and sets every position to zero
          * TODO checks
-         * @param sizeWidth New Chessboard width
-         * @param sizeHeight New Cheesboard height
+         * @param sizeColumn New Chessboard column
+         * @param sizeRow New Cheesboard row
          */
-        void initBoard(int sizeWidth, int sizeHeight);
+        void initBoard(int sizeColumn, int sizeRow);
 
         /**
          * Simple getter
-         * @return Width size of the board. Returns zero when width is zero
+         * @return Column size of the board. Returns zero when column is zero
          */
-        int getWidth();
+        int getColumn();
 
         /**
          * Simple getter
-         * @return Height size of the chessboard
+         * @return Row size of the chessboard
          */
-        int getHeight();
+        int getRow();
 
         /**
          * Sets random location of the Knight
@@ -107,14 +107,14 @@ namespace kaktus
          * Check if position is inside chessboard
          * @return True when position is inside chessboard
          */
-        bool positionExists(int moveWithWidth, int moveWithHeight);
+        bool positionExists(int moveWithColumn, int moveWithRow);
 
         /**
          * Checks if potencial position on chessboard is empty (is zero)
-         * @param moveWithWidth Number which will be added to current position width
-         * @param moveWithHeight Number which will be added to current position height
+         * @param moveWithColumn Number which will be added to current position column
+         * @param moveWithRow Number which will be added to current position row
          */
-        bool isEmpty(int newWidth, int newHeight);
+        bool isEmpty(int newColumn, int newRow);
 
         /**
          * Move Knight to the new position.
@@ -137,19 +137,19 @@ namespace kaktus
 
         /**
          * Count neighbours for potencial location
-         * @param moveWithWidth Number which will be added to current position width
-         * @param moveWithHeight Number which will be added to current position height
+         * @param moveWithColumn Number which will be added to current position column
+         * @param moveWithRow Number which will be added to current position row
          * @return Final count of neighbours. Range of values is <0-8>
          */
-        int countNeighbours(int moveWithWidth, int moveWithHeight);
+        int countNeighbours(int moveWithColumn, int moveWithRow);
 
         /**
          * Check if potencial position has neighbour
-         * @param moveWithWidth Number which will be added to potencial position width
-         * @param moveWithHeight Number which will be added to potencial position height
+         * @param moveWithColumn Number which will be added to potencial position column
+         * @param moveWithRow Number which will be added to potencial position row
          * @return True when potencial position has neighbour
          */
-        bool neighbourExists(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition);
+        bool neighbourExists(int moveWithColumn, int moveWithRow, Coordinates potentialPosition);
 
         /**
          * Simple getter
@@ -159,34 +159,34 @@ namespace kaktus
 
         /**
          * Check if new position is within chessboard range
-         * @param moveWithWidth Number which will be added to current position width
-         * @param moveWithHeight Number which will be added to current position height
-         * @return True when new width or new height is negative
+         * @param moveWithColumn Number which will be added to current position column
+         * @param moveWithRow Number which will be added to current position row
+         * @return True when new column or new row is negative
          */
-        bool isPotentialPositionNegative(int moveWithWidth, int moveWithHeight);
+        bool isPotentialPositionNegative(int moveWithColumn, int moveWithRow);
 
         /**
          * Check if new position is within chessboard range
-         * @param moveWithWidth Number which will be added to current position width
-         * @param moveWithHeight Number which will be added to current position height
-         * @return True when new width or new height is greater then max sizes of chessboard
+         * @param moveWithColumn Number which will be added to current position column
+         * @param moveWithRow Number which will be added to current position row
+         * @return True when new column or new row is greater then max sizes of chessboard
          */
-        bool isPotencialPositionGreaterThanSize(int moveWithWidth, int moveWithHeight);
+        bool isPotencialPositionGreaterThanSize(int moveWithColumn, int moveWithRow);
 
         /**
          * Check if new neighbour position is within chessboard range
-         * @param moveWithWidth Number which will be added to potencial position width
-         * @param moveWithHeight Number which will be added to potencial position height
-         * @return True when new width or new height is negative
+         * @param moveWithColumn Number which will be added to potencial position column
+         * @param moveWithRow Number which will be added to potencial position row
+         * @return True when new column or new row is negative
          */
-        bool isNeighbourPositionNegative(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition);
+        bool isNeighbourPositionNegative(int moveWithColumn, int moveWithRow, Coordinates potentialPosition);
 
         /**
          * Check if new neighbour position is within chessboard range
-         * @param moveWithWidth Number which will be added to potencial position width
-         * @param moveWithHeight Number which will be added to potencial position height
-         * @return True when new width or new height is greater then max sizes of chessboard
+         * @param moveWithColumn Number which will be added to potencial position column
+         * @param moveWithRow Number which will be added to potencial position row
+         * @return True when new column or new row is greater then max sizes of chessboard
          */
-        bool isNeighbourPositionGreaterThanSize(int moveWithWidth, int moveWithHeight, Coordinates potentialPosition);
+        bool isNeighbourPositionGreaterThanSize(int moveWithColumn, int moveWithRow, Coordinates potentialPosition);
     };
 }

@@ -26,7 +26,7 @@ namespace kaktus
     {
         const BoardSize boardSize = Game::giveMeBoardSizes();
 
-        m_board = std::make_shared<Chessboard>(boardSize.getWidth(), boardSize.getHeight());
+        m_board = std::make_shared<Chessboard>(boardSize.getColumn(), boardSize.getRow());
 
         // In case of fail, just reset and do it again
         // TODO random next step in case of multiple choices
@@ -40,8 +40,8 @@ namespace kaktus
     BoardSize Game::askForBoardSize()
     {
         BoardSize boardSize;
-        boardSize.setWidth();
-        boardSize.setHeight();
+        boardSize.setColumn();
+        boardSize.setRow();
         boardSize.printSize();
         return boardSize;
     }

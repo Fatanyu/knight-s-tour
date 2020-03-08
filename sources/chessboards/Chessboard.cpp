@@ -15,18 +15,17 @@ namespace kaktus
 
     void Chessboard::initPosition()
     {
-        //Coordinates position = {2,2};
         Coordinates position = {rand() % (maxColumn() - 1), rand() % (maxRow() - 1)};
-//	std::cout << "Position set to: " << position.column << "," << position.row << std::endl;
         setPosition(position);
     }
 
-    void Chessboard::initBoard(int sizeColumn, int sizeRow)
+    void Chessboard::initBoard(int columns, int rows)
     {
-        for (int indexRow = 0; indexRow < sizeRow; indexRow++)
+        for (int indexRow = 0; indexRow < rows; indexRow++)
         {
             std::vector<int> row;
-            for (int indexColumn = 0; indexColumn < sizeColumn; indexColumn++)
+            row.reserve(columns);
+            for (int indexColumn = 0; indexColumn < columns; indexColumn++)
             {
                 row.push_back(0);
             }
@@ -65,8 +64,6 @@ namespace kaktus
 
     bool Chessboard::move()
     {
-        //std::array<int,8> counts{0};
-        //int maxValue = -1;
         int minValue = 5000;
         int identifier = -1;
         if (positionExists(2, 1))
@@ -144,12 +141,11 @@ namespace kaktus
                 identifier = 8;
             }
         }
-        //std::cout << "1" << std::endl;
+
         if (identifier == -1)
         {
             return false;
         }
-        //std::cout << "2" << std::endl;
 
         Coordinates newPosition{m_currentPosition.column, m_currentPosition.row};
         switch (identifier)
@@ -250,7 +246,7 @@ namespace kaktus
                (m_currentPosition.row + moveWithRow) < 0;
     }
 
-    bool Chessboard::isPotencialPositionGreaterThanSize(int moveWithColumn, int moveWithRow)
+    bool Chessboard::isPotentialPositionGreaterThanSize(int moveWithColumn, int moveWithRow)
     {
         return (m_currentPosition.column + moveWithColumn) >= maxColumn() ||
                (m_currentPosition.row + moveWithRow) >= maxRow();
@@ -262,7 +258,7 @@ namespace kaktus
         {
             return false;
         }
-        if (isPotencialPositionGreaterThanSize(moveWithColumn, moveWithRow))
+        if (isPotentialPositionGreaterThanSize(moveWithColumn, moveWithRow))
         {
             return false;
         }

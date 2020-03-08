@@ -77,7 +77,7 @@ namespace kaktus
         bool positionExists(int moveWithColumn, int moveWithRow) override;
 
         /**
-         * Count neighbours for potencial location
+         * Count neighbours for potential location
          * @param moveWithColumn Number which will be added to current position column
          * @param moveWithRow Number which will be added to current position row
          * @return Final count of neighbours. Range of values is <0-8>
@@ -115,10 +115,10 @@ namespace kaktus
         /**
          * Chessboard initialization. Create matrix and sets every position to zero
          * TODO checks
-         * @param sizeColumn New Chessboard column
-         * @param sizeRow New Cheesboard row
+         * @param columns New Chessboard column
+         * @param rows New Cheesboard row
          */
-        void initBoard(int sizeColumn, int sizeRow);
+        void initBoard(int columns, int rows);
 
         /**
          * Sets random location of the Knight
@@ -126,7 +126,7 @@ namespace kaktus
         void initPosition();
 
         /**
-         * Checks if potencial position on chessboard is empty (is zero)
+         * Checks if potential position on chessboard is empty (is zero)
          * @param moveWithColumn Number which will be added to current position column
          * @param moveWithRow Number which will be added to current position row
          */
@@ -155,10 +155,10 @@ namespace kaktus
         }
 
         /**
-         * Check if potencial position has neighbour
-         * @param moveWithColumn Number which will be added to potencial position column
-         * @param moveWithRow Number which will be added to potencial position row
-         * @return True when potencial position has neighbour
+         * Check if potential position has neighbour
+         * @param moveWithColumn Number which will be added to potential position column
+         * @param moveWithRow Number which will be added to potential position row
+         * @return True when potential position has neighbour
          */
         bool neighbourExists(int moveWithColumn, int moveWithRow, Coordinates potentialPosition);
 
@@ -182,20 +182,20 @@ namespace kaktus
          * @param moveWithRow Number which will be added to current position row
          * @return True when new column or new row is greater then max sizes of chessboard
          */
-        bool isPotencialPositionGreaterThanSize(int moveWithColumn, int moveWithRow);
+        bool isPotentialPositionGreaterThanSize(int moveWithColumn, int moveWithRow);
 
         /**
          * Check if new neighbour position is within chessboard range
-         * @param moveWithColumn Number which will be added to potencial position column
-         * @param moveWithRow Number which will be added to potencial position row
+         * @param moveWithColumn Number which will be added to potential position column
+         * @param moveWithRow Number which will be added to potential position row
          * @return True when new column or new row is negative
          */
         static bool isNeighbourPositionNegative(int moveWithColumn, int moveWithRow, Coordinates potentialPosition);
 
         /**
          * Check if new neighbour position is within chessboard range
-         * @param moveWithColumn Number which will be added to potencial position column
-         * @param moveWithRow Number which will be added to potencial position row
+         * @param moveWithColumn Number which will be added to potential position column
+         * @param moveWithRow Number which will be added to potential position row
          * @return True when new column or new row is greater then max sizes of chessboard
          */
         bool isNeighbourPositionGreaterThanSize(int moveWithColumn, int moveWithRow, Coordinates potentialPosition);
